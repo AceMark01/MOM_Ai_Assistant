@@ -1,0 +1,1075 @@
+================================================================================
+                    BOTIVATE - AGENTIC MINUTES OF MEETING
+                          COMPLETE USER MANUAL
+================================================================================
+
+                     Botivate Services LLP (c) 2026
+                    "Powering Businesses On Autopilot"
+
+================================================================================
+                        VISHAY SUCHI (TABLE OF CONTENTS)
+================================================================================
+
+  1.  Botivate Kya Hai?
+  2.  System Kaise Kholein
+  3.  Home Screen (Dashboard) Ko Samjhein
+  4.  Nayi Meeting Kaise Schedule Karein
+  5.  Meetings List Page Ko Samjhein
+  6.  MOM Kaise Record / Log Karein- **Strategic AI Intelligence (Agenda-Aware):** AI handles meeting summaries by mapping discussions directly to the **Official Agenda**. It distinguishes between "Material Strategic Figures" (e.g., Invested Capital) and "Conversational Noise" (e.g., minor calculation errors), ensuring professional, outcome-focused MOMs.
+- **Flawless Speech-to-Text:** Uses AssemblyAI Cloud STT for highly accurate multilingual transcription (Hindi, English, Hinglish).
+- **Intelligent Task Extraction:** Every meeting now includes **Strict Action Items** and **Recommended Tasks**, extracted from across the entire conversation.
+- **Google Cloud Integration:** Full archival system using **Google Sheets** as a comprehensive database and **Google Drive** for secure document storage.
+- **Board Resolution (BR) Management:** Specialized workflow for high-stakes resolutions with meeting-specific folder archival and governance evidence tracking.
+- **Automated Notifications:** Dispatches professional summary emails with dynamically generated, meticulously styled PDFs featuring **Full Unicode support (Rupee ₹ symbol)**.
+- **Professional UI Rendering:** Clean dashboard views with automatic Markdown rendering (Professional Headings) and responsive layouts that handle long Zoom links.
+- **Dynamic White-Labeling:** Fully customizable branding (Company Name, Address, Logo) and optional "Powered by Botivate" attribution.
+  7.  Pehle Se Recorded File Kaise Upload Karein
+  8.  Seedha MOM Ke Saath Meeting Kaise Banayein
+  9.  Meeting Details Page Ko Samjhein
+  10. Discussion Summary Kaise Edit Karein
+  11. Tasks Kaise Add, Edit, Ya Delete Karein
+  12. Meeting Reschedule Kaise Karein
+  13. Meeting Cancel Kaise Karein
+  14. Meeting Delete Kaise Karein
+  15. MOM Ka PDF Kaise Download Karein
+  16. Recording / Upload Ke Baad Kya Hota Hai (AI Process)
+  17. Board Resolutions (BR) Ko Samjhein
+  18. Board Resolution Kaise Schedule Karein
+  19. Board Resolution Ka MOM Kaise Record Karein
+  20. Board Resolution Details Page Ko Samjhein
+  21. Global Tasks Page Ko Samjhein
+  22. Emails Aur Notifications Kaise Kaam Karte Hain
+  23. Dark Mode / Light Mode Switch Ko Samjhein
+  24. Aksar Poochhe Jaane Wale Sawaal (FAQ)
+  25. Is Manual Mein Use Hone Wale Shabdon Ki Dictionary
+
+
+================================================================================
+  1. BOTIVATE KYA HAI?
+================================================================================
+
+Botivate ek smart meeting management system hai. Isko aap apna personal
+secretary samajh sakte hain, jo:
+
+  - Aapki saari meetings ka record rakhta hai.
+  - Aapki meeting ki recording sunkar automatically likh deta hai ki
+    meeting mein kya kya discuss hua.
+  - Discussion mein se action items (tasks) khud identify karke sahi
+    logon ko assign kar deta hai.
+  - Sabhi attendees ko ek professional email bhejta hai jisme complete
+    meeting summary aur PDF document attached hota hai.
+  - Jinko task mila hai, unko alag email jaata hai jisme unka task
+    aur uski deadline likhi hoti hai.
+  - Track karta hai ki tasks time pe ho rahe hain ya deadline nikal
+    gayi hai.
+  - Meeting ke saare documents (recordings, transcripts, summaries)
+    Google Drive mein safely store karta hai.
+  - Charts aur statistics dikhata hai jisse aapko meeting trends aur
+    task completion rates samajhne mein asaani ho.
+
+System do tarah ki meetings handle karta hai:
+  a) Regular Meetings (jaise team meetings, project discussions)
+  b) Board Resolutions (BR) (jaise company ke formal decisions,
+     compliance ke kaam)
+
+
+================================================================================
+  2. SYSTEM KAISE KHOLEIN
+================================================================================
+
+Step 1: Apna web browser kholein (Google Chrome best hai).
+
+Step 2: Upar address bar mein woh web address daalein jo aapke
+        administrator ne diya hai (jaise local pe chalane ke liye:
+        http://localhost:5173, ya company ki live website ka address).
+
+Step 3: Enter dabayein. Botivate ka home screen (Dashboard) khul jayega.
+
+Bas itna hi! Abhi ke version mein koi login ki zaroorat nahi hai.
+System seedha Dashboard pe khulta hai.
+
+
+================================================================================
+  3. HOME SCREEN (DASHBOARD) KO SAMJHEIN
+================================================================================
+
+Jab aap Botivate kholte hain, sabse pehla screen Dashboard dikhta hai.
+Ye aapka command center hai. Har section kya dikhata hai:
+
+--- UPAR BAAYIN TARAF (Neela Gradient Box) ---
+  "Next Scheduled Meeting"
+  Ye bada, highlighted box aapko dikhata hai ki aapki agali meeting kab hai.
+  Aap dekh sakte hain:
+    - Meeting ka naam/title
+    - Date aur time
+    - Jagah ya online link
+    - Kitne log invited hain
+  Yahaan do buttons hain:
+    [View Details] - Meeting ki poori jaankari dekhne ke liye click karein.
+    [Record MOM]   - Is meeting ka MOM likhna shuru karne ke liye click karein.
+
+--- UPAR DAAYIN TARAF (Safed Box) ---
+  "Last Meeting"
+  Ye chhota box dikhata hai ki sabse recently kaunsi meeting hui thi.
+  Aap dekh sakte hain:
+    - Meeting ka naam
+    - Kis date ko hui thi
+    - Kitne tasks complete hue vs total tasks
+    - Kitne log aaye the vs total invited
+  Neeche "View all meetings" pe click karke poori meetings list dekh
+  sakte hain.
+
+--- DOOSRI ROW (Purple/Indigo Gradient Box) ---
+  "Next Board Resolution"
+  Upar wale meeting box jaise hi hai, par ye khaas taur pe aapki
+  agle Board Resolution ke liye hai. Isme bhi [View Details] aur
+  [Record MOM] buttons hain.
+
+--- DOOSRI ROW DAAYIN TARAF (Safed Box) ---
+  "Last Board Resolution"
+  Sabse recently complete hui Board Resolution ki details dikhata hai,
+  jisme kitne action items complete hue aur current status kya hai.
+
+--- STATISTICS WALI ROW (7 Chhote Rang-birangi Boxes) ---
+  Ye chhote cards important numbers dikhate hain ek nazar mein:
+    - Total Meetings:  System mein kitni meetings hain total.
+    - Total Tasks:     Saari meetings mein milaakar kitne tasks hain.
+    - Pending:         Jo tasks abhi shuru nahi hue.
+    - In Progress:     Jo tasks pe koi kaam kar raha hai abhi.
+    - Completed:       Jo tasks ho chuke hain.
+    - Overdue:         Jo tasks ki deadline nikal gayi aur abhi tak nahi hue.
+    - Upcoming:        Kitni meetings future mein schedule hain.
+
+--- CHARTS SECTION ---
+  Do visual charts ek saath dikhte hain:
+
+  Baayin Chart - "Meeting Trends":
+    Ek bar chart jo dikhata hai ki har mahine mein kitni meetings hui.
+    Jitni lambi bar, utni zyada meetings us mahine mein.
+
+  Daayin Chart - "Task Distribution":
+    Ek golaakaar (donut) chart jo dikhata hai ki Pending, In Progress,
+    aur Completed tasks ka anupaat kya hai. Rangon se ek nazar mein
+    samajh aa jaata hai ki zyada tasks ho chuke hain ya abhi pending hain.
+
+--- NEECHE KA SECTION ---
+  Do lists ek saath dikhti hain:
+
+  Baayin List - "Recent Meetings":
+    Pichhli kuch meetings dikhata hai unke naam, date, jagah, aur
+    kitne tasks the. Kisi bhi meeting ke naam pe click karke uski
+    poori details dekh sakte hain.
+    Poori list ke liye "View all" pe click karein.
+
+  Daayin List - "Overdue Tasks":
+    Woh tasks dikhata hai jinki deadline nikal chuki hai. Har entry
+    mein dikhta hai:
+      - Task ka naam
+      - Kaun zimmedaar hai
+      - Kab tak karna tha
+    Agar koi overdue task nahi hai, toh khushi ka message "No overdue
+    tasks" aata hai ek celebration icon ke saath.
+
+
+================================================================================
+  4. NAYI MEETING KAISE SCHEDULE KAREIN
+================================================================================
+
+Ye meeting lifecycle ka pehla step hai. Schedule karne ka matlab hai
+meeting ki date, time, aur kaun aayega ye set karna. Step-by-step process:
+
+Step 1: Kisi bhi page pe, baayin sidebar mein "Meetings" pe click karein.
+
+Step 2: Meetings page ke upar, [Schedule Meeting] button pe click karein.
+        Aap "Schedule New Meeting" form pe pahunch jayenge.
+
+Step 3: "Meeting Details" section bharein:
+
+  Title (Zaroori hai):
+    Meeting ka naam likhein. Jaise: "Weekly Team Sync" ya
+    "Budget Review Q2". Ye field zaroori hai - iske bina submit
+    nahi hoga.
+
+  Organization:
+    Aapki company ya organization ka naam. Ye pehle se
+    "Botivate Services LLP" bhara hota hai, par aap badal sakte hain.
+
+  Meeting Type:
+    Dropdown se select karein ki ye kaisi meeting hai:
+      - Regular Meeting (default)
+      - Board Resolution (agar ye select kiya, toh meeting Board
+        Resolutions section mein banegi, regular Meetings mein nahi)
+      - Committee Meeting
+      - Annual General Meeting
+
+  Meeting Mode:
+    Chunein ki meeting kaise hogi:
+      - Online (video call ke liye, jaise Google Meet, Zoom wagairah)
+      - Offline (aamne-saamne meeting ke liye)
+
+  Venue / Platform:
+    Agar Meeting Mode "Online" hai, toh video call ka link daalein
+    (jaise: "https://meet.google.com/abc-defg-hij").
+    Agar Meeting Mode "Offline" hai, toh physical jagah likhein
+    (jaise: "Conference Room A, 3rd Floor").
+
+  Date:
+    Date field pe click karein aur calendar se meeting ki date
+    chunein.
+
+  Time:
+    Time field pe click karein aur meeting ka time set karein.
+
+  Hosted By:
+    Meeting ki chair karne wale ya host karne wale ka naam likhein.
+    Jaise: "Satyendra Sir (CEO)".
+
+Step 4: "Agenda" section bharein:
+  Discussion ke topics add karne ke liye [+ Add] button pe click karein.
+  Har topic ke liye likhein:
+    - Topic: Ek chhota title (jaise "Project Update")
+    - Description: Thoda detail mein ki kya discuss hoga
+  Aur topics add karne ke liye dubara [+ Add] pe click karein.
+  Koi topic hatane ke liye uske aage laal [Remove] button pe click karein.
+
+Step 5: "Expected Attendees" section bharein:
+  Har aadmi ko add karne ke liye [+ Add] button pe click karein.
+  Har attendee ke liye bharein:
+
+    Unique ID:
+      Is aadmi ki pehchaan ka number (jaise employee ID).
+
+    Name (Zaroori hai):
+      Attendee ka poora naam. Jaise: "Prabhat Kumar Singh".
+
+    Email:
+      Unka email address jahan pe meeting ka invitation bheja jayega.
+      Jaise: "prabhat@company.com".
+      ZAROORI BAAT: Agar aap email daalte hain, toh system automatically
+      ek professional meeting invitation email bhejega is aadmi ko!
+
+    Designation:
+      Unki job title. Jaise: "AI Developer" ya "Director".
+
+    WhatsApp Number:
+      Unka WhatsApp number contact ke liye.
+
+    Remarks:
+      Is khaas attendee ke liye koi personal note ya instruction.
+      Jaise: "Q2 report lekar aana" ya "Presentation tayyar rakhna".
+      DHYAN DEIN: Ye remarks invitation email mein SHAMIL honge jo
+      is attendee ko jayega, toh woh aapka note dekh sakenge.
+
+  Kisi attendee ko hatane ke liye laal [Remove Attendee] button pe
+  click karein.
+
+Step 6: Neeche bade neele button pe click karein:
+        [Schedule & Send Invites]
+
+Iske baad kya hota hai:
+  - Meeting system mein save ho jaati hai.
+  - Har attendee jiska email address hai, usko ek professionally
+    designed meeting invitation email jaata hai jisme:
+      - Meeting ka title
+      - Date aur time
+      - Jagah/Platform
+      - Unka personal remark (agar aapne likha ho)
+  - Aap automatically Meeting Details page pe pahunch jayenge.
+  - Ek safalta ka message "Meeting scheduled successfully! Invitations
+    sent." dikhega.
+
+
+================================================================================
+  5. MEETINGS LIST PAGE KO SAMJHEIN
+================================================================================
+
+Jab aap baayin sidebar mein "Meetings" pe click karte hain, toh aapki
+saari regular meetings ki list dikhti hai (Board Resolutions nahi -
+woh alag hain).
+
+--- UPAR KE BUTTONS ---
+  Teen buttons dikhte hain upar:
+
+  [Upload MOM]:
+    Isse use karein agar meeting ka audio/video recording system ke
+    baahar record hua ho aur aap use yahan upload karna chahte hain.
+
+  [Schedule Meeting]:
+    Scheduling form pe le jaata hai (Section 4 mein samjhaya gaya hai).
+
+  [Create MOM]:
+    Isse use karein agar aap seedha meeting ki details aur MOM ek
+    saath manually likhna chahte hain, bina recording ke.
+
+--- TASK INTELLIGENCE SUMMARY ---
+  Upar ek bar dikhta hai jo saari meetings ke tasks ki statistics dikhata hai:
+    - Total Tasks: Saari meetings mein milaakar kitne tasks hain
+    - Pending: Kitne tasks shuru hone ka intezaar kar rahe hain
+    - In Progress: Kitne tasks pe kaam ho raha hai
+    - Completed: Kitne tasks ho chuke hain
+  In numbers pe click karke aap meetings ko filter kar sakte hain
+  jo us status ke tasks wali hain.
+
+--- TAB FILTERS ---
+  Teen tabs se aap meetings ko unki haalat ke hisaab se filter kar
+  sakte hain:
+
+  [Upcoming]:
+    Woh meetings dikhata hai jo schedule ho chuki hain par abhi hui
+    nahi hain, ya system abhi unhe process kar raha hai.
+
+  [Completed]:
+    Woh meetings dikhata hai jinka MOM final ho chuka hai aur save
+    ho gaya hai.
+
+  [Cancelled]:
+    Woh meetings dikhata hai jo cancel kar di gayi theen.
+
+--- MEETING CARDS ---
+  Har meeting ek card ki tarah dikhti hai jisme:
+    - Meeting Title (bada text upar)
+    - Organization ka naam
+    - Date aur Time
+    - Jagah / Platform
+    - Status badge (Scheduled, Processing, Completed, Cancelled, wagairah)
+      "Processing" ka matlab hai system abhi meeting ki recording ko
+      analyze kar raha hai.
+    - Kitne attendees hain
+    - Task counts (Pending, In Progress, Completed)
+
+  Har card pe Action Buttons:
+    [View] - Poori meeting details dekhne ke liye click karein.
+    [Record MOM] - Is meeting ka MOM likhne ke liye click karein.
+    [Delete] (laal kachre ka icon) - Meeting ko hamesha ke liye
+      delete karne ke liye click karein. Delete karne se pehle ek
+      confirmation box aayega.
+
+
+================================================================================
+  6. MOM KAISE RECORD / LOG KAREIN (MINUTES OF MEETING)
+================================================================================
+
+Meeting ho jaane ke baad, aapko minutes "log" ya "record" karne hote hain.
+Yahaan aap capture karte hain ki meeting mein kya hua.
+
+Step 1: Meetings page pe jaayein (sidebar mein "Meetings" pe click karein).
+
+Step 2: Woh meeting dhundhein jiska MOM likhna hai.
+
+Step 3: Meeting card pe [Record MOM] pe click karein.
+        (Aap pehle [View] pe bhi click kar sakte hain, phir details
+        page se [Record MOM] pe click karein.)
+
+Step 4: Aapko "Meeting Details" page dikhega jisme ye sections honge:
+
+  --- AUDIO RECORDING ---
+  Upar ek recording widget dikh sakta hai. Isse aap:
+    - Microphone button pe click karke apne computer ke microphone se
+      seedha audio record kar sakte hain.
+    - Meeting ki discussion khatam hone pe recording rok dein.
+    - System automatically is recording ko upload aur process karega.
+    YA
+    - Aap pehle se recorded audio file (.webm, .mp3, .m4a) ko upload
+      area mein drag aur drop kar sakte hain.
+
+  --- MARK ATTENDANCE ---
+  Aapko saare invited attendees ki list dikhegi. Har aadmi ke liye:
+    - Aap unka naam aur email dekh sakte hain.
+    - Unke naam ke saath dropdown se mark karein:
+        "Present" - Woh meeting mein aaye the.
+        "Absent"  - Woh nahi aaye the.
+        "Excused" - Unki nahi aane ki koi jaayaz wajah thi.
+    - Aap optional "Personal Remark" bhi likh sakte hain har attendee ke liye.
+
+  --- DISCUSSION SUMMARY ---
+  Ek bada text box jahan aap likh sakte hain ki meeting mein kya
+  discuss hua.
+  Agar aapne audio upload ya record kiya hai, toh ye box AI ke
+  process karne ke baad automatically bhar jayega.
+  Aap hamesha summary ko manually edit kar sakte hain.
+
+  --- ACTION ITEMS / TASKS ---
+  [+ Add Task] pe click karke meeting mein decide hue tasks add karein.
+  Har task ke liye bharein:
+    - Task Title: Kya karna hai (jaise "Q2 Report Tayyar Karo")
+    - Assigned To: Kaun karega. Aap ya toh:
+        - Attendees ki dropdown list se chun sakte hain, YA
+        - Manually naam type kar sakte hain agar woh aadmi meeting
+          mein nahi tha
+    - Email: Zimmedaar aadmi ka email (dropdown se chunne pe
+      automatically bhar jaata hai)
+    - Deadline: Kis date tak ye task complete hona chahiye, date
+      chunne ke liye click karein
+    - Status: Abhi ki haalat chunein:
+        "Pending"     - Abhi shuru nahi hua
+        "In Progress" - Kaam chal raha hai
+        "Completed"   - Ho chuka hai
+  Task hatane ke liye laal [Remove] button pe click karein.
+
+  --- NEXT MEETING ---
+  Optional: Agle follow-up meeting ki date aur time set kar sakte hain.
+
+Step 5: Neeche ke bade hare button pe click karein:
+        [Save & Finalize MOM]
+
+Iske baad kya hota hai:
+  - Saara data save ho jaata hai.
+  - Agar audio upload/record kiya tha, toh AI system ise process
+    karta hai:
+      1. Audio ko text mein badla jaata hai (transcription).
+      2. Text se professional meeting notes ki summary banayi jaati hai.
+      3. Teen PDF documents bante hain:
+           a) Poora shabdakshara transcript (har bol gaya shabd)
+           b) AI processing audit logs
+           c) Executive summary briefing
+      4. Saare documents Google Drive mein upload hote hain.
+      5. Sabhi attendees ko MOM summary aur PDF attachment ke saath
+         email jaata hai.
+      6. Jinko task mila hai, unko alag email jaata hai jisme unka
+         task aur uski deadline likhi hoti hai.
+  - Meeting ka status "Completed" ho jaata hai.
+
+
+================================================================================
+  7. PEHLE SE RECORDED FILE KAISE UPLOAD KAREIN
+================================================================================
+
+Agar aapne meeting system ke baahar record ki hai (jaise phone pe ya
+Zoom ki built-in recording se) aur aap chahte hain ki AI ise process kare:
+
+Step 1: Meetings page se upar [Upload MOM] pe click karein.
+
+Step 2: Dropdown list se chunein ki ye recording kis meeting ki hai.
+
+Step 3: Apni audio/video file ko upload area mein drag aur drop karein,
+        YA click karke apne computer se file select karein.
+        Supported formats: .webm, .mp3, .m4a, .wav, .mp4
+
+Step 4: Upload/submit button pe click karein.
+
+Iske baad kya hota hai:
+  - File system mein upload ho jaati hai.
+  - AI pipeline processing shuru kar deta hai (Section 6 mein
+    bataya gaya waisa hi).
+  - Meeting ka status "Processing" ho jaata hai jab tak AI kaam
+    kar raha hota hai.
+  - Hone ke baad status "Completed" ho jaata hai ya "Processing"
+    mein rehta hai taaki aap Record MOM page se attendance aur
+    tasks add kar sakein.
+
+
+================================================================================
+  8. SEEDHA MOM KE SAATH MEETING KAISE BANAYEIN
+================================================================================
+
+Agar aapki koi aisi meeting hai jo system mein pehle se schedule nahi
+thi, aur aap meeting banakar uska MOM ek saath add karna chahte hain:
+
+Step 1: Meetings page se upar [Create MOM] pe click karein.
+
+Step 2: Saari meeting details bharein (scheduling wale hi fields hain):
+        Title, Organization, Type, Mode, Venue, Date, Time, Hosted By.
+
+Step 3: Attendees add karein unki details, attendance status, aur
+        remarks ke saath.
+
+Step 4: Discussion summary likhein.
+
+Step 5: Tasks/action items add karein agar hain.
+
+Step 6: Neeche [Save MOM] pe click karein.
+
+Meeting ban jayegi aur saara MOM data ek saath save ho jayega.
+
+
+================================================================================
+  9. MEETING DETAILS PAGE KO SAMJHEIN
+================================================================================
+
+Jab aap kisi bhi meeting card pe [View] pe click karte hain, ya
+system mein kahin bhi meeting ka naam click karte hain, toh us
+khaas meeting ki detailed page dikhti hai.
+
+--- UPAR NAVIGATION BAR ---
+  [Back to Meetings] - Meetings list pe wapas le jaata hai.
+  Kai action buttons dikhte hain (meeting ki haalat ke hisaab se):
+    [Reschedule] - Meeting ki date/time badlein (Section 12)
+    [Cancel]     - Meeting ko cancel karein (Section 13)
+    [Delete]     - Meeting ko hamesha ke liye hatayein (Section 14)
+    [Record MOM] - MOM logging form pe jaayein (Section 6)
+    [Download MOM PDF] - Official MOM document download karein (Section 15)
+
+--- HERO HEADER (Purple/Blue Gradient Box) ---
+  Meeting ka title, ID number, aur saari details dikhata hai:
+    - Organization, Meeting Type, Meeting Mode
+    - Date, Time, Venue
+    - Hosted By, Current Status
+
+--- NEXT MEETING SCHEDULE ---
+  Agar follow-up meeting ki date/time set ki gayi thi, toh ye yahaan
+  ek orange-highlighted box mein dikhta hai.
+
+--- MEETING INTELLIGENCE ARCHIVE ---
+  Ye section TABHI dikhta hai jab AI ne recording ko process kar liya ho.
+  Isme Google Drive mein stored documents ke links hote hain:
+
+    [Executive Summary] - AI ke banaye hue summary PDF ko naye tab
+                          mein kholne ke liye click karein.
+    [Verbatim Transcript] - Poora shabd-dar-shabd transcript PDF
+                            kholne ke liye click karein.
+    [AI Audit Trail] - Step-by-step processing log dekhne ke liye
+                       click karein.
+
+  Ek hara dot "AI Extraction Verified" ka message confirm karta hai
+  ki AI ne sab kuch safaltapoovak process kar liya hai.
+
+--- ATTENDEES ---
+  Meeting mein invited sabhi logon ki list.
+  Har aadmi ka card dikhata hai:
+    - Unke naam ke pehle aksharon ka ek gol circle (hara = Present,
+      laal = Absent)
+    - Unka poora naam
+    - Email address
+    - Designation
+    - Attendance status ("Present" ya "Absent")
+
+--- AGENDA ---
+  Meeting mein plan kiye gaye topics.
+  Har topic ka number, title, aur description dikhta hai.
+
+--- DISCUSSION SUMMARY ---
+  Ek text area jo dikhata hai ki kya discuss hua.
+  Formatting:
+    - AI ab professional "Markdown Rendering" use karta hai.
+    - Saare main topics **BOLD UPPERCASE HEADERS** mein dikhenge.
+    - Unke niche ke details normal bullet points mein honge.
+  Text badalne ke liye [Edit] (pencil icon) button pe click karein.
+  Edit karne ke baad [Save] pe click karein taaki changes save hon.
+
+--- ACTION ITEMS / TASKS ---
+  Meeting se nikle tasks ki list.
+  Har task dikhata hai:
+    - Task title
+    - Description
+    - Kaun zimmedaar hai
+    - Zimmedaar aadmi ka email
+    - Deadline date
+    - Status (dropdown se badal sakte hain)
+  Aap ye kar sakte hain:
+    - Status dropdown badal kar task update karein (Pending / In Progress /
+      Completed)
+    - Pencil icon pe click karke task ke saare fields edit karein
+    - Kachre ke icon pe click karke task delete karein
+    - [+ Add Task] pe click karke naya task banayein
+
+
+================================================================================
+  10. DISCUSSION SUMMARY KAISE EDIT KAREIN
+================================================================================
+
+Step 1: Meeting ka details page kholein.
+
+Step 2: Neeche scroll karke "Discussion Summary" section tak jaayein.
+
+Step 3: Us section ke upar daayin taraf pencil (edit) icon button pe
+        click karein.
+
+Step 4: Text area edit hone layak ho jayega. Apni zaroorat ke hisaab
+        se content badlein.
+
+Step 5: Changes save karne ke liye [Save] pe click karein.
+
+Updated summary system mein store ho jayegi. Ye tab kaam aata hai
+jab aap AI ke banaye hue summary ko sudharna chahte hain ya thik
+karna chahte hain, ya apne khud ke notes add karna chahte hain.
+
+
+================================================================================
+  11. TASKS KAISE ADD, EDIT, YA DELETE KAREIN
+================================================================================
+
+Tasks (jise "Action Items" bhi kehte hain) woh kaam hain jo meeting
+ke baad karne hote hain. Inhe kaise manage karein:
+
+--- NAYA TASK ADD KARNA ---
+Step 1: Meeting details page kholein.
+Step 2: "Action Items / Tasks" section tak scroll karein.
+Step 3: [+ Add Task] pe click karein.
+Step 4: Bharein:
+          - Title: Kya karna hai
+          - Description: Task ke baare mein aur detail
+          - Responsible Person: Kaun karega
+          - Responsible Email: Unka email address
+          - Deadline: Kab tak karna hai
+          - Status: Abhi ki haalat (naye task ke liye usually "Pending")
+Step 5: Task save karne ke liye checkmark/save button pe click karein.
+
+--- PEHLE SE MAUJOOD TASK EDIT KARNA ---
+Step 1: List mein task dhundhein.
+Step 2: Task pe pencil (edit) icon pe click karein.
+Step 3: Zaroorat ke hisaab se koi bhi field badlein.
+Step 4: Changes save karne ke liye checkmark/save button pe click karein.
+
+--- TASK KA STATUS BADALNA ---
+Step 1: List mein task dhundhein.
+Step 2: Status dropdown pe click karein (jisme "Pending", "In Progress"
+        wagairah likha hota hai)
+Step 3: Naya status chunein.
+Badlaav automatically save ho jaata hai.
+
+--- TASK DELETE KARNA ---
+Step 1: List mein task dhundhein.
+Step 2: Kachre (delete) ke icon pe click karein.
+Step 3: Ek confirmation box aayega "Delete this task?"
+Step 4: Delete karne ke liye OK pe click karein, ya rakhne ke liye
+        Cancel pe click karein.
+
+
+================================================================================
+  12. MEETING RESCHEDULE KAISE KAREIN
+================================================================================
+
+Agar meeting ko kisi aur date ya time pe le jaana ho:
+
+Step 1: Meeting ka details page kholein.
+
+Step 2: Upar [Reschedule] button pe click karein.
+
+Step 3: Ek popup aayega: "Enter new date (YYYY-MM-DD):"
+        Naya date is format mein likhein: Saal-Mahina-Tarikh.
+        Jaise: 2026-03-20
+
+Step 4: OK pe click karein. Ek aur popup aayega: "Enter new time (HH:MM):"
+        Naya time 24-ghante ke format mein likhein.
+        Jaise: 14:30 (dopahar 2:30 baje ke liye)
+
+Step 5: OK pe click karein.
+
+Kya hota hai:
+  - Meeting ki date aur time update ho jaati hai.
+  - Status "Rescheduled" ho jaata hai.
+  - Sabhi attendees jinke email hain, unko automatic
+    "Meeting Rescheduled" email jaata hai jisme puraani aur nayi
+    date/time dono dikhayi jaati hain.
+
+
+================================================================================
+  13. MEETING CANCEL KAISE KAREIN
+================================================================================
+
+Agar meeting ab nahi honi hai:
+
+Step 1: Meeting ka details page kholein.
+
+Step 2: Upar [Cancel] button pe click karein.
+
+Step 3: Ek confirmation box aayega: "Cancel [Meeting Title]?"
+
+Step 4: Confirm karne ke liye OK pe click karein.
+
+Kya hota hai:
+  - Meeting ka status "Cancelled" ho jaata hai.
+  - Sabhi attendees jinke email hain, unko automatic
+    "Meeting Cancelled" notification email jaata hai.
+  - Meeting ab Meetings page ke "Cancelled" tab mein dikhegi.
+  - Reschedule, Cancel, aur Record MOM buttons gayab ho jayenge
+    kyunki cancel hui meeting pe aur koi action nahi ho sakta.
+
+
+================================================================================
+  14. MEETING DELETE KAISE KAREIN
+================================================================================
+
+CHETAVANI: Delete karna PERMANENT hai aur ise wapas nahi kar sakte!
+
+Step 1: Meeting ka details page kholein.
+
+Step 2: Upar laal [Delete] button pe click karein.
+
+Step 3: Ek confirmation box aayega:
+        "Delete [Meeting Title]? This action cannot be undone."
+
+Step 4: Delete confirm karne ke liye OK pe click karein.
+
+Kya hota hai:
+  - Meeting aur usse juda SAARA data (attendees, tasks, agenda,
+    discussion summary, upload kiye hue documents) hamesha ke liye
+    hat jaata hai.
+  - Is meeting ke liye Google Drive mein upload ki gayi files bhi
+    delete ho jaati hain.
+  - Aap Meetings list page pe redirect ho jayenge.
+
+
+================================================================================
+  15. MOM KA PDF KAISE DOWNLOAD KAREIN
+================================================================================
+
+Step 1: Meeting ka details page kholein.
+
+Step 2: Upar neele [Download MOM PDF] button pe click karein.
+
+Step 3: Ek PDF file generate hogi aur aapke computer mein download
+        ho jayegi.
+
+PDF mein ye hota hai:
+  - Meeting ka title, date, time, venue
+  - Full Unicode Support: Ab Rupee (₹) symbol aur special characters PDF mein saaf dikhte hain.
+  - Organization aur host ki details
+  - Saare attendees ki list unke attendance status ke saath
+  - Poori discussion summary (Bold Headers ke saath)
+  - Saare action items/tasks assignees aur deadlines ke saath
+  - Poora agenda
+
+Ye PDF professionally formatted hoti hai aur ise print, share, ya
+official records ke liye store kiya ja sakta hai.
+
+
+================================================================================
+  16. RECORDING / UPLOAD KE BAAD KYA HOTA HAI (AI PROCESS)
+================================================================================
+
+Jab aap audio/video recording upload karte hain ya browser se seedha
+record karte hain, toh system ek automatic 6-stage process shuru
+karta hai:
+
+Stage 1 - AWAAZ SE TEXT (Transcription):
+  Audio file ek cloud service ko bheji jaati hai jo ise sunkar har
+  bole gaye shabd ko likhit mein badal deti hai. Ye Hindi, English,
+  aur mixed Hindi-English (Hinglish) conversations ke saath kaam
+  karta hai. Har speaker ko alag pehchana jaata hai (Speaker A,
+  Speaker B, wagairah).
+
+Stage 2 - STRATEGIC SAMAJHDAAR SUMMARY (AI Analysis):
+  Likhe hue text ko ek AI assistant analyze karta hai jo "Strategic Intelligence" use karta hai:
+    a) Agenda Mapping: Meeting mein jo baat hui use sidha "Official Agenda" se link kiya jaata hai.
+    b) Noise Filtering: AI ab "Conversational Noise" (jaise 400g ya 500g ki mamuli galti) ko ignore karta hai aur sirf "Material Strategic Figures" (jaise Final ₹2 Crore Investment) par focus karta hai.
+    c) Decision & Task Extraction: Dashboard ke liye point-wise summary banata hai jisme hamesha **'DECISIONS MADE'** aur **'RECOMMENDED TASKS'** ka alag section hota hai.
+    d) Professional Hierarchy: Summary mein Headers Hamesha BOLD UPPERCASE honge taaki padhne mein asaani ho.
+
+Stage 3 - DOCUMENT BANANA (PDF Generation):
+  Teen PDF documents bante hain:
+    a) Full Transcript - Har bola gaya shabd, line by line
+    b) AI Audit Log - AI ne discussion ko kaise toda aur analyze kiya
+    c) Executive Briefing - Ek saaf-suthri, padhne layak summary
+
+Stage 4 - CLOUD STORAGE (Google Drive Upload):
+  Teenon PDFs plus original audio recording Google Drive mein ek
+  dedicated folder mein upload hoti hain. Har meeting ka apna
+  alag folder banta hai.
+
+Stage 5 - DATABASE UPDATE:
+  System mein meeting ka record upload ki gayi saari files ke
+  links aur generated summary ke saath update hota hai.
+
+Stage 6 - STATUS UPDATE:
+  Jab ye sab ho raha hota hai, meeting ka status "Processing" rehta hai.
+  Jab aap final MOM save karte hain (attendance aur tasks ke saath),
+  toh har attendee ko ek professional email jaata hai jisme:
+    - Email ke andar discussion summary
+    - MOM PDF email ke saath attached
+  Jinko task assign hua hai, unko alag email jaata hai jisme:
+    - Kaunsa task unko assign hua
+    - Kis meeting se
+    - Deadline kab hai
+
+Poori process usually 2-5 minute leti hai, recording ki length ke
+hisaab se.
+
+
+================================================================================
+  17. BOARD RESOLUTIONS (BR) KO SAMJHEIN
+================================================================================
+
+Board Resolutions ek khaas tarah ki meeting hain jo company ke formal
+decisions ke liye use hoti hain. Ye bilkul regular meetings jaise hi
+kaam karti hain par kuch farq hain:
+
+  - Board Resolutions ek alag section mein dikhti hain jise
+    "Board Resolutions" kehte hain, baayin sidebar mein.
+  - Emails mein zyada formal, corporate-style branding hoti hai
+    (neele ki jagah gehra charcoal rang).
+  - Tasks ko "Action Items" ki jagah "Action Mandates" kaha jaata hai.
+  - PDF aur email templates mein governance/compliance ki bhaasha
+    use hoti hai.
+  - Board Resolutions ka apna alag data storage hai.
+
+Baaki sab kuch (scheduling, MOM record karna, tasks add karna,
+wagairah) bilkul waise hi kaam karta hai jaise regular meetings mein.
+
+
+================================================================================
+  18. BOARD RESOLUTION KAISE SCHEDULE KAREIN
+================================================================================
+
+Step 1: Schedule Meeting page pe jaayein (sidebar se ya Meetings page se).
+
+Step 2: "Meeting Type" dropdown mein "Board Resolution" select karein.
+
+Step 3: Baaki saari details bharein jaisa Section 4 mein bataya gaya hai.
+
+Step 4: [Schedule & Send Invites] pe click karein.
+
+Meeting "Board Resolutions" section mein banegi, regular "Meetings"
+mein nahi. Invitation emails formal Board Resolution ki styling mein jayenge.
+
+DOOSRA TARIKA: Aap sidebar se Board Resolutions page pe jaake wahan
+ka [Schedule Resolution] button bhi use kar sakte hain.
+
+
+================================================================================
+  19. BOARD RESOLUTION KA MOM KAISE RECORD KAREIN
+================================================================================
+
+Process bilkul wahi hai jo regular MOM record karne ka hai (Section 6),
+bas ye farq hain:
+
+  - Sidebar mein "Board Resolutions" pe navigate karein.
+  - Resolution card pe ya details page se [Record MOM] pe click karein.
+  - Form mein "Mark Attendance" ki jagah "Board Attendance" dikhta hai.
+  - Attendees ki designation "Director" ya similar dikhti hai.
+  - Tasks ko "Action Mandates" kaha jaata hai.
+  - Aap supporting documents (jaise signed resolutions) file upload
+    area se upload kar sakte hain.
+  - Save karne ke liye [Save & Finalize Resolution] pe click karein.
+
+
+================================================================================
+  20. BOARD RESOLUTION DETAILS PAGE KO SAMJHEIN
+================================================================================
+
+Ye page regular Meeting Details page (Section 9) se bahut milta julta
+hai, par corporate governance styling ke saath:
+
+  - Header mein gehra neela/indigo rang hota hai.
+  - Intelligence Archive section bilkul waise hi kaam karta hai.
+  - Attendees ko unki formal designations ke saath dikhaya jaata hai.
+  - Tasks ko "Action Mandates" compliance ki bhaasha ke saath dikhaya
+    jaata hai.
+  - PDF download governance-formatted document generate karta hai.
+
+Baaki saari features (editing, tasks add karna, rescheduling, cancelling,
+deleting) bilkul waise hi kaam karti hain jaise regular meetings mein.
+
+
+================================================================================
+  21. GLOBAL TASKS PAGE KO SAMJHEIN
+================================================================================
+
+Global Tasks page mein SAARI meetings aur Board Resolutions ke SAARE
+tasks ek jagah dikhayi dete hain. Ise access karne ke liye baayin
+sidebar mein "Global Tasks" pe click karein.
+
+--- SEARCH BAR ---
+  Upar daayin taraf ek search box hai. Koi bhi keyword type karke
+  task ke naam ya meeting ke naam mein search karein.
+
+--- FILTERS ---
+  Tasks ko do tarike se filter kar sakte hain:
+
+  Source Filter (baayin taraf):
+    [All]     - Meetings aur Board Resolutions dono ke tasks dikhayein
+    [Regular] - Sirf regular Meetings ke tasks dikhayein
+    [BR]      - Sirf Board Resolutions ke tasks dikhayein
+
+  Status Filter (daayin taraf):
+    [All]         - Saare tasks dikhayein chahe unki haalat kuch bhi ho
+    [Pending]     - Sirf woh tasks jo abhi shuru nahi hue
+    [In Progress] - Sirf woh tasks jinpe kaam ho raha hai
+    [Completed]   - Sirf woh tasks jo ho chuke hain
+
+--- TASK CARDS ---
+  Har task card mein dikhta hai:
+    - Baayin taraf ek rangin patti (neeli Regular ke liye, bhuri BR ke liye)
+    - Ek label badge "MOM RECORD" ya "BOARD RESOLUTION" dikhata hai
+    - Us meeting ka naam jisse ye task aaya (clickable link)
+    - Task ka title (bada text)
+    - Description (agar hai)
+    - Kaun zimmedaar hai (unke naam ke pehle akshar ek gole mein)
+    - Deadline date
+    - Status badge (PENDING, IN PROGRESS, ya COMPLETED)
+    - Meeting details page pe jaane ke liye ek arrow button
+
+
+================================================================================
+  22. EMAILS AUR NOTIFICATIONS KAISE KAAM KARTE HAIN
+================================================================================
+
+System kai jagah pe automatically emails bhejta hai. Kab kaunsa email
+jaata hai ye yahaan hai:
+
+  1. MEETING INVITATION (Jab Meeting Schedule Hoti Hai):
+     Kisko jaata hai: Har attendee jinka email address hai.
+     Kya hota hai usme: Meeting title, date, time, venue, aur
+     personal remarks.
+
+  2. MEETING RESCHEDULED (Jab Meeting Reschedule Hoti Hai):
+     Kisko jaata hai: Har attendee jinka email address hai.
+     Kya hota hai usme: Puraani date/time kaati hui, nayi date/time
+     highlighted.
+
+  3. MEETING CANCELLED (Jab Meeting Cancel Hoti Hai):
+     Kisko jaata hai: Har attendee jinka email address hai.
+     Kya hota hai usme: Meeting title ke saath cancellation notice.
+
+  4. MOM SUMMARY EMAIL (Jab MOM Save/Finalize Hota Hai):
+     Kisko jaata hai: Har attendee jinka email address hai.
+     Kya hota hai usme:
+       - Email ke andar poori discussion summary
+       - MOM PDF document attachment ke roop mein
+       - Action items/tasks ki table
+
+  5. TASK ASSIGNMENT EMAIL (Jab Tasks Ke Saath MOM Save Hota Hai):
+     Kisko jaata hai: Har us aadmi ko jisko task assign hua hai
+     (unke email ke zariye).
+     Kya hota hai usme:
+       - Khaas task jo unko assign hua hai
+       - Kis meeting se aaya hai
+       - Deadline date
+
+  6. TASK DEADLINE REMINDERS (Automatic, roz chalta hai):
+     Kisko jaata hai: Task assignees jinki deadline nazdeek aa rahi hai.
+     Kya hota hai usme: Aane wali deadline ke baare mein yaad-dihaani.
+
+  7. TASK OVERDUE ALERTS (Automatic, roz chalta hai):
+     Kisko jaata hai: Task assignees jinki deadline nikal chuki hai.
+     Kya hota hai usme: Alert ki unka task overdue hai.
+
+Saare emails professionally designed hote hain Botivate branding ke
+saath. Board Resolution ke emails zyada formal, corporate style mein hote hain.
+
+
+================================================================================
+  23. DARK MODE / LIGHT MODE SWITCH KO SAMJHEIN
+================================================================================
+
+Har page ke upar daayin taraf (top right corner) ek chhota icon hota hai:
+  - Suraj ka icon (Light Mode ke liye)
+  - Chaand ka icon (Dark Mode ke liye)
+
+Ise click karke toggle karein:
+  - Light Mode: Safed background mein gehra text (roshan kamare mein
+    dekhne mein asaan)
+  - Dark Mode: Gehra background mein halka text (andheri jagah ya
+    raat ko aankhon pe halka)
+
+Aapki pasand yaad rakhli jaati hai, toh ye waise hi rahega chahe
+aap browser band karke dubara kholein.
+
+
+================================================================================
+  24. AKSAR POOCHHE JAANE WALE SAWAAL (FAQ)
+================================================================================
+
+Q: Kya Botivate use karne ke liye account banana padega?
+A: Abhi ke version mein koi login ki zaroorat nahi hai. System seedha
+   web address se accessible hai.
+
+Q: Audio ke kaunse formats upload kar sakte hain?
+A: System .webm, .mp3, .m4a, .wav, aur .mp4 files accept karta hai.
+
+Q: AI processing mein kitna time lagta hai?
+A: Aamtaur pe 30-60 minute ki meeting recording ke liye 2-5 minute.
+   Lambi recordings mein zyada time lag sakta hai.
+
+Q: Kya AI Hindi meetings samajh sakta hai?
+A: Haan! System Hindi, English, aur mixed Hindi-English (Hinglish)
+   conversations samajhta hai. Summary hamesha professional English
+   mein banti hai, chahe meeting kisi bhi bhaasha mein hui ho.
+
+Q: Agar galti se meeting delete kar di toh?
+A: Maaf kijiye, deletion permanent hai aur wapas nahi ho sakta.
+   Hamesha deletion confirmation box pe OK karne se pehle confirm
+   kar lein.
+
+Q: Kya logon ko ek se zyada emails milte hain?
+A: Jab aap MOM save karte hain, toh har attendee ko EK email milta
+   hai jisme summary aur PDF hai. Iske alaawa, agar kisi ko task
+   mila hai, toh unhe EK alag task notification email milta hai.
+   Toh zyada se zyada, ek aadmi ko 2 emails aate hain.
+
+Q: Meeting ke documents kahan store hote hain?
+A: Saare documents (recordings, transcripts, summaries) aapki
+   company ke Google Drive mein organized folders mein store hote hain.
+
+Q: Kya AI ke banaye hue summary ko edit kar sakte hain?
+A: Haan! Discussion Summary poori tarah se editable hai. Edit button
+   pe click karein, changes karein, aur Save pe click karein.
+
+Q: Agar meeting schedule ki par attendees add karna bhool gaye?
+A: Aap baad mein Record MOM page ke zariye attendees add kar sakte
+   hain jab actually meeting ke minutes log kar rahe hon.
+
+Q: Kaise pata chalega ki AI abhi tak process kar raha hai?
+A: Meeting ka status dekhein. Agar "Processing" dikha raha hai
+   (ek dhadakti hui animation ke saath), toh AI abhi kaam kar raha
+   hai. Hone ke baad aap MOM save kar sakte hain.
+
+
+================================================================================
+  25. IS MANUAL MEIN USE HONE WALE SHABDON KI DICTIONARY
+================================================================================
+
+MOM (Minutes of Meeting):
+  Meeting mein jo discuss hua aur decide hua, uska likha hua record.
+
+Board Resolution (BR):
+  Kisi company ke board of directors dwara liya gaya formal faisla.
+  Meeting jaisi hi hoti hai par governance aur compliance ke niyam
+  laagu hote hain.
+
+Attendee:
+  Woh aadmi jo meeting mein bulaya gaya hai ya meeting mein aata hai.
+
+Action Item / Task:
+  Woh kaam jo meeting ke baad karna hota hai. Ek khaas aadmi
+  zimmedaar hota hai aur ek deadline hoti hai.
+
+Agenda:
+  Meeting mein discuss kiye jaane wale topics ki pehle se bani hui list.
+
+Discussion Summary:
+  Meeting mein kya baat hui uska likha hua saransh.
+
+Transcript:
+  Har bole gaye shabd ki likhi hui nakal. Jaise asli
+  baatcheet ko kaagaz pe padh rahe ho.
+
+Dashboard:
+  Home page jo saari meetings, tasks, aur statistics ka overview dikhata hai.
+
+Status (Meeting):
+  - Scheduled: Meeting future ke liye plan ki gayi hai.
+  - Processing: AI abhi meeting ki recording analyze kar raha hai.
+  - Completed: Meeting ho gayi aur MOM record ho chuka hai.
+  - Rescheduled: Meeting ki date/time badal di gayi hai.
+  - Cancelled: Meeting ab nahi hogi.
+
+Status (Task):
+  - Pending: Task abhi shuru nahi hua hai.
+  - In Progress: Koi us task pe kaam kar raha hai abhi.
+  - Completed: Task pura ho chuka hai.
+  - Overdue: Deadline nikal gayi par task complete nahi hua.
+
+PDF:
+  Ek document format jo formatting preserve karta hai aur asaani
+  se print ya share kiya ja sakta hai. System har meeting ke liye
+  professional PDF documents banata hai.
+
+Google Drive:
+  Google ki ek online storage service jahan meeting ke saare
+  documents safely store hote hain aur kahin se bhi access kiye
+  ja sakte hain.
+
+
+================================================================================
+                        USER MANUAL YAHAN KHATAM HOTA HAI
+================================================================================
+
+Technical setup aur configuration ke liye, project directory mein
+SETUP.md file dekhein.
+
+Madad chahiye? Botivate support team se sampark karein.
+
+                     Botivate Services LLP (c) 2026
+                    "Powering Businesses On Autopilot"
+================================================================================

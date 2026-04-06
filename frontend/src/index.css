@@ -1,0 +1,51 @@
+/* ── Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { @apply bg-slate-50 text-slate-900; }
+  .dark body { @apply bg-[#0d1117] text-slate-50; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-slate-200 dark:bg-slate-700 rounded-full; }
+
+/* ── Selection ── */
+::selection { background: #bcdeff; color: #16478f; }
+
+/* ── Utility classes ── */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-[#161b27] rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold rounded-xl
+           bg-[#399dff] hover:bg-[#1b80f5] text-white transition-all active:scale-[0.98]
+           shadow-[0_4px_14px_rgba(57,157,255,0.3)];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl
+           bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300
+           hover:bg-slate-200 dark:hover:bg-white/10 transition-all active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl
+           bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-500/20
+           hover:bg-red-100 dark:hover:bg-red-500/20 transition-all active:scale-[0.98];
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-700
+           bg-white dark:bg-[#1e2436] text-slate-900 dark:text-white placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-[#399dff] focus:border-transparent transition-all;
+  }
+}
+
+/* Smooth theme transitions */
+* { transition-property: background-color, border-color; transition-duration: 120ms; }
+svg *, img { transition: none; }

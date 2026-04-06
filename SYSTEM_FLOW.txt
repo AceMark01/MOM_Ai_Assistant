@@ -1,0 +1,314 @@
+================================================================================
+              BOTIVATE - SYSTEM FLOW & AI WORKING (Short Version)
+================================================================================
+                     Botivate Services LLP (c) 2026
+================================================================================
+
+
+Ye document Botivate system ka poora flow samjhata hai — Scheduling se
+lekar final email bhejne tak, aur AI kaise kaam karta hai — bilkul
+simple bhaasha mein, bina kisi technical shabd ke.
+
+
+================================================================================
+  PART A: REGULAR MEETING KA POORA FLOW
+================================================================================
+
+Neeche step-by-step poora journey bataya gaya hai ek regular meeting
+ka — shuru se end tak.
+
+
+STEP 1: MEETING SCHEDULE KARNA
+-------------------------------
+  - Admin portal kholega aur "Schedule Meeting" pe click karega.
+  - Ek form khulega jismein bharein:
+      > Meeting ka naam (jaise "Weekly Review")
+      > Company ka naam
+      > Meeting kis type ki hai (Regular, Committee, wagairah)
+      > Online hai ya Offline
+      > Jagah ya Google Meet/Zoom ka link
+      > Date aur Time
+      > Kaun host kar raha hai
+  - Phir agenda add karein — meeting mein kya kya discuss hoga.
+  - Phir attendees (logon ko) add karein — unka naam, email,
+    designation, WhatsApp number, aur koi special remark.
+  - Jab sab bhar dein, toh neeche [Schedule & Send Invites] dabayein.
+
+  >> SYSTEM KYA KAREGA:
+     - Meeting save ho jayegi.
+     - Jinke email dale hain, unko turant ek sundar meeting
+       invitation email chala jayega jismein meeting ki saari
+       details hongi.
+
+
+STEP 2: MEETING HOGI — AUR ADMIN RECORDING SHURU KAREGA
+---------------------------------------------------------
+  - Scheduled date aur time pe meeting hogi (online ya offline).
+  - Admin portal kholega aur us scheduled meeting ki "Details Page"
+    pe jayega.
+  - Details page pe upar ek "Recording Panel" dikhega jismein:
+      > Ek microphone ka dropdown hoga — usme select karein ki
+        kaunsa microphone/speaker use karna hai (jaise laptop ka
+        built-in mic, ya koi external mic).
+      > Neeche ek bada button hoga: [Start Intelligence Capture]
+
+  >> KAB RECORDING SHURU KAREIN?
+     - Jab meeting shuru ho jaaye aur discussion ka pehla shabd
+       bola jaaye, TAB [Start Intelligence Capture] button dabayein.
+     - Button dabte hi:
+         > Screen ke neeche ek floating panel aa jayega jismein:
+             - Timer chalega (00:00:00 se aage badhta hua)
+             - Ek green signal dikhega jab awaaz aa rahi hogi
+               ("Voice Signal Detected")
+             - Agar khamoshi ho, toh likhega "No Sound Detected..."
+             - Ek Pause button hoga — agar beech mein break lena
+               ho toh dabayein, phir Play dabayein continue karne ke liye
+         > Ye panel tab tak dikhega jab tak recording chal rahi hai.
+
+  >> KAB RECORDING BAND KAREIN?
+     - Jab meeting ki discussion poori ho jaaye — jaise sab log
+       bye bol dein ya agenda khatam ho jaaye — tab floating panel
+       mein laal [Finish] button dabayein.
+     - Finish dabte hi recording ruk jayegi aur system turant AI
+       ko bhej dega processing ke liye.
+
+  ZAROORI TIPS:
+    - Recording ke beech mein browser band mat karein warna
+      recording kho jayegi.
+    - Microphone computer ke paas rakhein taaki saari awaazein
+      saaf record hon.
+    - Agar meeting online hai (Google Meet pe), toh laptop ka
+      speaker ON rakhein aur mic ke zariye speaker ki awaaz record
+      ho jayegi.
+
+
+STEP 3: AI KAAM SHURU KARTA HAI (AUTOPILOT MODE)
+--------------------------------------------------
+  [Finish] dabte hi poora screen ek "Analyzing Meeting Data"
+  message dikhata hai — iska matlab AI ab kaam kar raha hai.
+
+  AI ye saara kaam KHUD karta hai, bina kisi ke haath lagaye:
+
+  1) SUNNA (Awaaz Se Likhawat):
+     AI pehle poori recording sunta hai — chahe Hindi mein ho,
+     English mein ho, ya dono milake (Hinglish). Har baat karne
+     wale ko alag pehchanta hai — jaise "Speaker A ne ye bola,
+     Speaker B ne ye bola". Poori baat likh li jaati hai
+     shabd-dar-shabd.
+
+  2) SAMJHNA (Summary Banana):
+     Phir AI us poori likhi hui baat ko padhta hai aur samjhta
+     hai ki:
+       - Kya kya important baatein hui?
+       - Kya decisions liye gaye?
+       - Kya kya kaam karne hain?
+     In sab se ek saaf-suthri, professional summary banata hai
+     English mein.
+
+  3) DOCUMENTS BANANA (3 PDF Files):
+     AI teen documents banata hai:
+       - Document 1: Poora transcript — har bola gaya shabd jaise
+         ka taisa likha hua.
+       - Document 2: AI ka apna log — usne kaise analyze kiya,
+         step by step.
+       - Document 3: Executive briefing — ek polished, readable
+         summary.
+
+  4) GOOGLE DRIVE MEIN SAVE KARNA:
+     Teenon documents plus original audio recording automatic
+     Google Drive mein upload ho jaate hain. Har meeting ka apna
+     alag folder banta hai wahan.
+
+  5) DATABASE UPDATE:
+     System mein meeting ki entry update ho jaati hai — sab links
+     jud jaate hain (recording ka link, summary ka link, transcript
+     ka link).
+
+  Ye poora process 2-5 minute mein hota hai (recording ki length
+  ke hisaab se). Jab tak AI kaam kar raha hai, meeting ka status
+  "Processing" dikhta hai.
+
+
+STEP 4: ADMIN MOM FINALIZE KARTA HAI (Attendance + Tasks)
+-----------------------------------------------------------
+  AI ka kaam hone ke baad, Admin phir se us meeting pe jaata hai
+  aur [Record MOM] pe click karta hai. Ab ek form khulega:
+
+  a) ATTENDANCE MARK KARNA:
+     - Har attendee ke aage dropdown hai — "Present", "Absent",
+       ya "Excused" mein se ek chunein.
+     - Zaroorat ho toh personal remark likh dein.
+
+  b) DISCUSSION SUMMARY:
+     - Ye box AI ne KHUD BHAR DIYA HOGA pehle se! Admin sirf
+       padh ke dekhein aur agar kuch badalna ho toh edit kar lein.
+
+  c) TASKS / ACTION ITEMS ADD KARNA:
+     - [+ Add Task] pe click karke batayein ki meeting mein
+       kya kya kaam decide hua:
+         > Kya kaam hai (Title)
+         > Kaun karega (attendees ki list se ya manually naam likhein)
+         > Uska email
+         > Kab tak karna hai (Deadline)
+     - Ek se zyada tasks add kar sakte hain.
+
+  d) NEXT MEETING (Optional):
+     - Agar agle meeting ki date/time tay hui hai, toh woh
+       bhi bhar dein.
+
+  - Sab bharne ke baad, neeche [Save & Finalize MOM] dabayein.
+
+
+STEP 5: FINAL EMAILS AUTOMATIC JAATE HAIN
+-------------------------------------------
+  Jab MOM save hota hai, system khud ye emails bhejta hai:
+
+  EMAIL 1 — MOM SUMMARY (Sabhi Attendees Ko):
+    - Har attendee jiska email diya tha, usko ek professional
+      email jaata hai jismein:
+        > Email ke andar meeting ki poori summary likhi hoti hai.
+        > Email ke saath ek PDF file attached hoti hai — official
+          MOM document.
+        > Saare tasks ki list ek table mein hoti hai.
+
+  EMAIL 2 — TASK ASSIGNMENT (Sirf Jinko Task Mila):
+    - Agar kisi aadmi ko koi task assign hua hai, toh usko ek
+      ALAG email jaata hai jismein:
+        > Kaunsa task unko diya gaya hai.
+        > Kis meeting se aaya hai.
+        > Kab tak karna hai (deadline).
+
+  EMAIL 3 — DEADLINE REMINDERS (Automatic, Roz):
+    - System roz check karta hai ki kisi ka deadline aane wala
+      hai ya nahi. Agar hai, toh yaad-dihaani email bhejta hai.
+
+  EMAIL 4 — OVERDUE ALERTS (Automatic, Roz):
+    - Agar kisi ka deadline nikal gaya aur task abhi tak complete
+      nahi hua, toh ek warning email jaata hai.
+
+  >> REGULAR MEETING KA FLOW KHATAM! <<
+
+
+================================================================================
+  PART B: BOARD RESOLUTION (BR) KA POORA FLOW
+================================================================================
+
+Board Resolution ka flow bilkul Regular Meeting jaisa hi hai,
+bas kuch extra cheezein hain:
+
+
+STEP 1: BR SCHEDULE KARNA
+---------------------------
+  - Schedule Meeting form mein "Meeting Type" dropdown mein
+    "Board Resolution" select karein.
+  - Baaki sab waisa hi — title, date, time, attendees (directors),
+    wagairah.
+  - [Schedule & Send Invites] dabayein.
+
+  >> SYSTEM KYA KAREGA:
+     - BR save hogi "Board Resolutions" section mein (alag se).
+     - Sabhi directors ko formal invitation email jayega — iska
+       design zyada corporate aur governance style ka hota hai
+       (gehra rang, formal bhaasha).
+
+
+STEP 2: BR MEETING HOGI — RECORDING WAISA HI
+-----------------------------------------------
+  - Admin "Board Resolutions" section mein jaake us BR ki
+    Details Page kholega.
+  - Details page pe wahi Recording Panel dikhega — microphone
+    chunein aur [Start Intelligence Capture] dabayein.
+  - Meeting discussion chal rahi ho tab tak recording chalegi.
+  - Khatam hone pe [Finish] dabayein.
+  - Bilkul waisa hi kaam karta hai jaise Regular Meeting mein.
+
+
+STEP 3: AI WAISA HI KAAM KAREGA
+---------------------------------
+  - Audio sunna → Text likhna → Summary banana → 3 PDFs banana →
+    Google Drive mein upload → Database update.
+  - Sab bilkul waise hi hoga, fark sirf ye hai ki emails ka
+    design zyada formal hota hai BR meetings ke liye.
+
+
+STEP 4: ADMIN BR KA MOM FINALIZE KAREGA
+-----------------------------------------
+  - "Board Resolutions" mein jaake us BR pe [Record MOM] dabayein.
+  - Form almost waisa hi hai, bas:
+      > Attendees ke saath "Director" jaisi designation dikhti hai.
+      > Tasks ko "Action Mandates" kaha jaata hai.
+      > Supporting documents bhi upload kar sakte hain (jaise
+        signed resolution ki scan copy).
+  - Attendance mark karein, tasks add karein.
+  - [Save & Finalize Resolution] dabayein.
+
+
+STEP 5: FINAL EMAILS (Regular Wale + EXTRA CS WALA)
+-----------------------------------------------------
+  Sabhi attendees (directors) ko MOM email jaata hai (waisa hi
+  jaise regular meeting mein — summary + PDF attached + tasks list).
+
+  PAR — BR mein ek EXTRA step hai:
+
+  ╔════════════════════════════════════════════════════════════╗
+  ║         COMPANY SECRETARY (CS) KO BHEJNA                 ║
+  ║         (Sirf Board Resolutions Mein)                    ║
+  ╚════════════════════════════════════════════════════════════╝
+
+  - BR Details page pe ek special button hota hai:
+    [Send to CS]
+
+  - Jab Admin ye button dabayega, toh ek popup aayega:
+    "Enter CS Email (Leave blank to use default)"
+
+  - Admin ya toh:
+      > CS ka email daal sakta hai, YA
+      > Khaali chhod de — system default CS email pe bhejega
+        (jo pehle se set hai system mein).
+
+  - OK dabayein.
+
+  >> SYSTEM KYA KAREGA:
+     - System us BR meeting ka ek official PDF banayega.
+     - Woh PDF CS ke email pe bhej dega ek formal email ke saath.
+     - System mein mark ho jayega ki "CS ko bhej diya gaya hai".
+
+  Ye sirf Board Resolutions mein hota hai, regular meetings mein nahi.
+  Iska matlab hai ki formal governance ka compliance maintain ho
+  raha hai — Company Secretary ke paas company ke saare Board
+  decisions ki official copy pahunch jaati hai.
+
+
+================================================================================
+  QUICK REFERENCE: POORA FLOW EK NAZAR MEIN
+================================================================================
+
+  REGULAR MEETING:
+  Schedule Karna → Invite Email Sabko → Meeting Hona →
+  Admin Details Page Kholega → [Start Intelligence Capture] Dabaega →
+  Meeting Discussion Record Hogi → [Finish] Dabaega →
+  AI Sunega → AI Likhega → AI Summary Banayega →
+  3 PDFs Banenge → Google Drive Mein Upload → Admin [Record MOM]
+  Kholega → Attendance Mark Karega → Summary Check Karega →
+  Tasks Add Karega → [Save & Finalize MOM] Dabaega →
+  MOM Email Sabko Jayega → Task Email Jinko Task Mila →
+  Roz Deadline Reminders → Roz Overdue Alerts
+
+  BOARD RESOLUTION:
+  Sab Kuch Waisa Hi ↑↑↑ + Ek Extra Step:
+  Admin [Send to CS] Dabaega → CS Ka Email Daalega →
+  System CS Ko Official PDF Bhejega
+
+
+================================================================================
+  AI KA KAAM EK LINE MEIN:
+  "Admin [Start Intelligence Capture] dabata hai → AI sunti hai →
+   AI likhti hai → AI samjhti hai → Summary banati hai →
+   Documents banati hai → Drive mein rakhti hai →
+   Admin save karta hai → Emails automatic jaate hain"
+================================================================================
+
+
+                     Botivate Services LLP (c) 2026
+                    "Powering Businesses On Autopilot"
+================================================================================
