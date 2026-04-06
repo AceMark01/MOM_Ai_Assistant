@@ -6,6 +6,7 @@ api_keys.json
 *.json
 !package.json
 !tsconfig.json
+!frontend/tsconfig.node.json
 google_credentials.json
 .env
 uploads/
