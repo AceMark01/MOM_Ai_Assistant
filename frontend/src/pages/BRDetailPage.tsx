@@ -186,7 +186,9 @@ export default function BRDetailPage() {
         { icon: <ShieldCheckIcon className="w-4 h-4" />, label: 'Status', value: meeting.status },
     ];
 
-    const canAction = meeting.status === 'Scheduled' || meeting.status === 'Rescheduled' || meeting.status === 'Processing';
+    const normalizedStatus = String(meeting.status || '').trim().toLowerCase();
+    const canAction = normalizedStatus === 'scheduled' || normalizedStatus === 'rescheduled' || normalizedStatus === 'processing';
+    const showTasksSection = normalizedStatus === 'completed';
     const inputClass = 'w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 outline-none transition-all';
 
     return (
@@ -415,62 +417,63 @@ export default function BRDetailPage() {
                 )}
             </Section>
 
-            {/* ── Action Mandates (Editable Tasks) ── */}
-            <Section title="Action Mandates" icon={<ClipboardDocumentListIcon className="w-[18px] h-[18px]" />}>
-                {meeting.tasks.length === 0 ? (
-                    <p className="text-sm text-slate-400">No mandates recorded.</p>
-                ) : (
-                    <div className="space-y-2.5">
-                        {meeting.tasks.map((t) => (
-                            <div key={t.id} className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-white/5 overflow-hidden">
-                                {editingTaskId === t.id ? (
-                                    <div className="p-4 space-y-3 bg-amber-50/30 dark:bg-amber-500/5">
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            <input value={taskEditData.title} onChange={(e) => setTaskEditData(p => ({ ...p, title: e.target.value }))} className={inputClass} placeholder="Mandate Title" />
-                                            <input value={taskEditData.responsible_person} onChange={(e) => setTaskEditData(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} placeholder="Responsible Director" />
-                                            <input type="date" value={taskEditData.deadline} onChange={(e) => setTaskEditData(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
-                                            <select value={taskEditData.status} onChange={(e) => setTaskEditData(p => ({ ...p, status: e.target.value }))} className={inputClass}>
-                                                <option value="Pending">Pending</option>
-                                                <option value="In Progress">In Progress</option>
-                                                <option value="Completed">Completed</option>
-                                            </select>
-                                        </div>
-                                        <div className="flex gap-2 justify-end">
-                                            <button onClick={() => setEditingTaskId(null)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
-                                            <button onClick={handleSaveEdit} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-all">Save</button>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4">
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-[13px] font-semibold text-slate-800 dark:text-white">{t.title}</p>
-                                            {t.description && <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{t.description}</p>}
-                                            <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[11px] text-slate-400">
-                                                {t.responsible_person && <span className="flex items-center gap-1"><UserIcon className="w-3 h-3" />{t.responsible_person}</span>}
-                                                {t.deadline && <span className="flex items-center gap-1"><CalendarDaysIcon className="w-3 h-3" />Due: {t.deadline}</span>}
+            {showTasksSection && (
+                <Section title="Action Mandates" icon={<ClipboardDocumentListIcon className="w-[18px] h-[18px]" />}>
+                    {meeting.tasks.length === 0 ? (
+                        <p className="text-sm text-slate-400">No mandates recorded.</p>
+                    ) : (
+                        <div className="space-y-2.5">
+                            {meeting.tasks.map((t) => (
+                                <div key={t.id} className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-white/5 overflow-hidden">
+                                    {editingTaskId === t.id ? (
+                                        <div className="p-4 space-y-3 bg-amber-50/30 dark:bg-amber-500/5">
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                <input value={taskEditData.title} onChange={(e) => setTaskEditData(p => ({ ...p, title: e.target.value }))} className={inputClass} placeholder="Mandate Title" />
+                                                <input value={taskEditData.responsible_person} onChange={(e) => setTaskEditData(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} placeholder="Responsible Director" />
+                                                <input type="date" value={taskEditData.deadline} onChange={(e) => setTaskEditData(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
+                                                <select value={taskEditData.status} onChange={(e) => setTaskEditData(p => ({ ...p, status: e.target.value }))} className={inputClass}>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="In Progress">In Progress</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                            </div>
+                                            <div className="flex gap-2 justify-end">
+                                                <button onClick={() => setEditingTaskId(null)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
+                                                <button onClick={handleSaveEdit} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-all">Save</button>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-2 shrink-0">
-                                            <select
-                                                value={t.status}
-                                                onChange={(e) => handleStatusChange(t.id, e.target.value)}
-                                                className={`text-[12px] font-bold px-3 py-1.5 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400 ${statusColors[t.status] ?? statusColors['Pending']}`}
-                                            >
-                                                <option value="Pending">Pending</option>
-                                                <option value="In Progress">In Progress</option>
-                                                <option value="Completed">Completed</option>
-                                            </select>
-                                            <button onClick={() => handleStartEdit(t)} className="p-1.5 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors" title="Edit Mandate">
-                                                <PencilSquareIcon className="w-4 h-4" />
-                                            </button>
+                                    ) : (
+                                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4">
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-[13px] font-semibold text-slate-800 dark:text-white">{t.title}</p>
+                                                {t.description && <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{t.description}</p>}
+                                                <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[11px] text-slate-400">
+                                                    {t.responsible_person && <span className="flex items-center gap-1"><UserIcon className="w-3 h-3" />{t.responsible_person}</span>}
+                                                    {t.deadline && <span className="flex items-center gap-1"><CalendarDaysIcon className="w-3 h-3" />Due: {t.deadline}</span>}
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2 shrink-0">
+                                                <select
+                                                    value={t.status}
+                                                    onChange={(e) => handleStatusChange(t.id, e.target.value)}
+                                                    className={`text-[12px] font-bold px-3 py-1.5 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400 ${statusColors[t.status] ?? statusColors['Pending']}`}
+                                                >
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="In Progress">In Progress</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                                <button onClick={() => handleStartEdit(t)} className="p-1.5 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors" title="Edit Mandate">
+                                                    <PencilSquareIcon className="w-4 h-4" />
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </Section>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </Section>
+            )}
 
             {/* ── Supporting Docs ── */}
             <Section title="Supporting Evidence" icon={<PaperClipIcon className="w-[18px] h-[18px]" />}>

@@ -230,7 +230,9 @@ export default function MeetingDetailPage() {
     { icon: <CheckCircleIcon className="w-4 h-4" />, label: 'Status', value: meeting.status },
   ];
 
-  const canAction = meeting.status === 'Scheduled' || meeting.status === 'Rescheduled' || meeting.status === 'Processing';
+  const normalizedStatus = String(meeting.status || '').trim().toLowerCase();
+  const canAction = normalizedStatus === 'scheduled' || normalizedStatus === 'rescheduled' || normalizedStatus === 'processing';
+  const showTasksSection = normalizedStatus === 'completed';
   const inputClass = 'w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-white text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 outline-none transition-all';
 
   return (
@@ -504,94 +506,95 @@ export default function MeetingDetailPage() {
         )}
       </Section>
 
-      {/* ── Tasks (Fully Editable) ── */}
-      <Section 
-        title="Action Items / Tasks" 
-        icon={<ClipboardDocumentListIcon className="w-[18px] h-[18px]" />}
-        action={
-          <button onClick={() => setShowAddTask(true)} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-100 transition-colors">
-            <PlusIcon className="w-3 h-3" /> Add Task
-          </button>
-        }
-      >
-        {/* Add Task Form */}
-        {showAddTask && (
-          <div className="mb-4 p-4 rounded-xl bg-brand-50/50 dark:bg-brand-500/5 border border-brand-200 dark:border-brand-500/20 space-y-3">
-            <p className="text-[12px] font-bold text-brand-700 dark:text-brand-400 uppercase tracking-wide">New Task</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input placeholder="Task Title *" value={newTask.title} onChange={(e) => setNewTask(p => ({ ...p, title: e.target.value }))} className={inputClass} />
-              <input placeholder="Responsible Person" value={newTask.responsible_person} onChange={(e) => setNewTask(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} />
-              <input placeholder="Responsible Email" value={newTask.responsible_email} onChange={(e) => setNewTask(p => ({ ...p, responsible_email: e.target.value }))} className={inputClass} />
-              <input type="date" value={newTask.deadline} onChange={(e) => setNewTask(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
+      {showTasksSection && (
+        <Section 
+          title="Action Items / Tasks" 
+          icon={<ClipboardDocumentListIcon className="w-[18px] h-[18px]" />}
+          action={
+            <button onClick={() => setShowAddTask(true)} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-100 transition-colors">
+              <PlusIcon className="w-3 h-3" /> Add Task
+            </button>
+          }
+        >
+          {/* Add Task Form */}
+          {showAddTask && (
+            <div className="mb-4 p-4 rounded-xl bg-brand-50/50 dark:bg-brand-500/5 border border-brand-200 dark:border-brand-500/20 space-y-3">
+              <p className="text-[12px] font-bold text-brand-700 dark:text-brand-400 uppercase tracking-wide">New Task</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input placeholder="Task Title *" value={newTask.title} onChange={(e) => setNewTask(p => ({ ...p, title: e.target.value }))} className={inputClass} />
+                <input placeholder="Responsible Person" value={newTask.responsible_person} onChange={(e) => setNewTask(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} />
+                <input placeholder="Responsible Email" value={newTask.responsible_email} onChange={(e) => setNewTask(p => ({ ...p, responsible_email: e.target.value }))} className={inputClass} />
+                <input type="date" value={newTask.deadline} onChange={(e) => setNewTask(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
+              </div>
+              <input placeholder="Description" value={newTask.description} onChange={(e) => setNewTask(p => ({ ...p, description: e.target.value }))} className={inputClass} />
+              <div className="flex gap-2 justify-end">
+                <button onClick={() => setShowAddTask(false)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
+                <button onClick={handleAddTask} disabled={!newTask.title.trim()} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 disabled:opacity-50 transition-all">Add Task</button>
+              </div>
             </div>
-            <input placeholder="Description" value={newTask.description} onChange={(e) => setNewTask(p => ({ ...p, description: e.target.value }))} className={inputClass} />
-            <div className="flex gap-2 justify-end">
-              <button onClick={() => setShowAddTask(false)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
-              <button onClick={handleAddTask} disabled={!newTask.title.trim()} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 disabled:opacity-50 transition-all">Add Task</button>
-            </div>
-          </div>
-        )}
+          )}
 
-        {meeting.tasks.length === 0 && !showAddTask ? (
-          <p className="text-sm text-slate-400">No tasks recorded.</p>
-        ) : (
-          <div className="space-y-2.5">
-            {meeting.tasks.map((t) => (
-              <div key={t.id} className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-white/5 overflow-hidden">
-                {editingTaskId === t.id ? (
-                  /* ── Inline Edit Mode ── */
-                  <div className="p-4 space-y-3 bg-amber-50/30 dark:bg-amber-500/5">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <input value={taskEditData.title} onChange={(e) => setTaskEditData(p => ({ ...p, title: e.target.value }))} className={inputClass} placeholder="Task Title" />
-                      <input value={taskEditData.responsible_person} onChange={(e) => setTaskEditData(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} placeholder="Responsible Person" />
-                      <input type="date" value={taskEditData.deadline} onChange={(e) => setTaskEditData(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
-                      <select value={taskEditData.status} onChange={(e) => setTaskEditData(p => ({ ...p, status: e.target.value }))} className={inputClass}>
-                        <option value="Pending">Pending</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                      </select>
-                    </div>
-                    <input value={taskEditData.description} onChange={(e) => setTaskEditData(p => ({ ...p, description: e.target.value }))} className={inputClass} placeholder="Description" />
-                    <div className="flex gap-2 justify-end">
-                      <button onClick={() => setEditingTaskId(null)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
-                      <button onClick={handleSaveEdit} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-all">Save</button>
-                    </div>
-                  </div>
-                ) : (
-                  /* ── View Mode ── */
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4">
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-slate-800 dark:text-white">{t.title}</p>
-                      {t.description && <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{t.description}</p>}
-                      <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[11px] text-slate-400">
-                        {t.responsible_person && <span className="flex items-center gap-1"><UserIcon className="w-3 h-3" />{t.responsible_person}</span>}
-                        {t.deadline && <span className="flex items-center gap-1"><CalendarDaysIcon className="w-3 h-3" />Due: {t.deadline}</span>}
+          {meeting.tasks.length === 0 && !showAddTask ? (
+            <p className="text-sm text-slate-400">No tasks recorded.</p>
+          ) : (
+            <div className="space-y-2.5">
+              {meeting.tasks.map((t) => (
+                <div key={t.id} className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-white/5 overflow-hidden">
+                  {editingTaskId === t.id ? (
+                    /* ── Inline Edit Mode ── */
+                    <div className="p-4 space-y-3 bg-amber-50/30 dark:bg-amber-500/5">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input value={taskEditData.title} onChange={(e) => setTaskEditData(p => ({ ...p, title: e.target.value }))} className={inputClass} placeholder="Task Title" />
+                        <input value={taskEditData.responsible_person} onChange={(e) => setTaskEditData(p => ({ ...p, responsible_person: e.target.value }))} className={inputClass} placeholder="Responsible Person" />
+                        <input type="date" value={taskEditData.deadline} onChange={(e) => setTaskEditData(p => ({ ...p, deadline: e.target.value }))} className={inputClass} />
+                        <select value={taskEditData.status} onChange={(e) => setTaskEditData(p => ({ ...p, status: e.target.value }))} className={inputClass}>
+                          <option value="Pending">Pending</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Completed">Completed</option>
+                        </select>
+                      </div>
+                      <input value={taskEditData.description} onChange={(e) => setTaskEditData(p => ({ ...p, description: e.target.value }))} className={inputClass} placeholder="Description" />
+                      <div className="flex gap-2 justify-end">
+                        <button onClick={() => setEditingTaskId(null)} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">Cancel</button>
+                        <button onClick={handleSaveEdit} className="px-3 py-1.5 text-[12px] font-bold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-all">Save</button>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <select
-                        value={t.status}
-                        onChange={(e) => handleStatusChange(t.id, e.target.value)}
-                        className={`text-[12px] font-bold px-3 py-1.5 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400 ${statusColors[t.status] ?? statusColors['Pending']}`}
-                      >
-                        <option value="Pending">Pending</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                      </select>
-                      <button onClick={() => handleStartEdit(t)} className="p-1.5 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors" title="Edit Task">
-                        <PencilSquareIcon className="w-4 h-4" />
-                      </button>
-                      <button onClick={() => handleDeleteTask(t.id)} className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors" title="Delete Task">
-                        <TrashIcon className="w-4 h-4" />
-                      </button>
+                  ) : (
+                    /* ── View Mode ── */
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[13px] font-semibold text-slate-800 dark:text-white">{t.title}</p>
+                        {t.description && <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{t.description}</p>}
+                        <div className="flex flex-wrap items-center gap-3 mt-1.5 text-[11px] text-slate-400">
+                          {t.responsible_person && <span className="flex items-center gap-1"><UserIcon className="w-3 h-3" />{t.responsible_person}</span>}
+                          {t.deadline && <span className="flex items-center gap-1"><CalendarDaysIcon className="w-3 h-3" />Due: {t.deadline}</span>}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <select
+                          value={t.status}
+                          onChange={(e) => handleStatusChange(t.id, e.target.value)}
+                          className={`text-[12px] font-bold px-3 py-1.5 rounded-lg border cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400 ${statusColors[t.status] ?? statusColors['Pending']}`}
+                        >
+                          <option value="Pending">Pending</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Completed">Completed</option>
+                        </select>
+                        <button onClick={() => handleStartEdit(t)} className="p-1.5 rounded-lg text-slate-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-brand-500/10 transition-colors" title="Edit Task">
+                          <PencilSquareIcon className="w-4 h-4" />
+                        </button>
+                        <button onClick={() => handleDeleteTask(t.id)} className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors" title="Delete Task">
+                          <TrashIcon className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </Section>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </Section>
+      )}
 
     </div>
   );
