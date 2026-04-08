@@ -27,6 +27,16 @@ export interface Attendee {
   attendance_status: AttendanceStatus;
 }
 
+export interface EmployeeMasterRecord {
+  emp_id: string;
+  user_name: string;
+  department?: string;
+  designation?: string;
+  email?: string;
+  number?: string;
+  name_with_department?: string;
+}
+
 export interface AgendaItem {
   id: number;
   meeting_id: number;

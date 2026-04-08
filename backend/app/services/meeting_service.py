@@ -213,6 +213,7 @@ class MeetingService:
                     "user_name": att.user_name,
                     "email": att.email,
                     "designation": att.designation,
+                    "unique_id": att.unique_id,
                     "whatsapp_number": att.whatsapp_number,
                     "remarks": att.remarks,
                     "attendance_status": att.attendance_status,

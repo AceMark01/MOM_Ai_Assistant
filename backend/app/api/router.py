@@ -12,6 +12,7 @@ from app.api.upload import router as upload_router
 from app.api.br_meetings import router as br_meetings_router
 from app.api.recording import router as recording_router
 from app.api.branding import router as branding_router
+from app.api.employees import router as employees_router
 
 api_router = APIRouter()
 
@@ -25,3 +26,4 @@ api_router.include_router(upload_router, prefix="/upload", tags=["Upload & AI"])
 api_router.include_router(br_meetings_router, prefix="/br", tags=["Board Resolutions"])
 api_router.include_router(recording_router, prefix="/recording", tags=["Recording & Local AI"])
 api_router.include_router(branding_router, prefix="/branding", tags=["Branding"])
+api_router.include_router(employees_router, prefix="/employees", tags=["Employee Master"])

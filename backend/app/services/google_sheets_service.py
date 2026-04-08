@@ -56,7 +56,7 @@ SHEET_SCHEMAS: dict[str, list[str]] = {
         "processing_stage", "processing_error",
     ],
     "Attendees": [
-        "id", "meeting_id", "user_name", "email", "designation",
+        "id", "meeting_id", "user_name", "email", "designation", "unique_id",
         "whatsapp_number", "remarks", "attendance_status",
     ],
     "Agenda": [
@@ -101,7 +101,7 @@ SHEET_SCHEMAS: dict[str, list[str]] = {
         "processing_stage", "processing_error",
     ],
     "BR_Directors": [
-        "id", "meeting_id", "user_name", "email", "designation",
+        "id", "meeting_id", "user_name", "email", "designation", "unique_id",
         "whatsapp_number", "remarks", "attendance_status",
     ],
     "BR_Agenda": [

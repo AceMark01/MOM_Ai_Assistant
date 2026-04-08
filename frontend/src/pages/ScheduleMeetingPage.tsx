@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import api from '../api';
-import type { MeetingFormData, AttendanceStatus } from '../types';
+import type { MeetingFormData, AttendanceStatus, EmployeeMasterRecord } from '../types';
 
 const emptyForm: MeetingFormData = {
   title: '',
@@ -13,7 +13,7 @@ const emptyForm: MeetingFormData = {
   date: '',
   time: '',
   venue: '',
-  hosted_by: '',
+  hosted_by: 'Dilip Kodwani',
   attendees: [],
   agenda_items: [],
   discussion_summary: '',
@@ -22,6 +22,7 @@ const emptyForm: MeetingFormData = {
 
 export default function ScheduleMeetingPage() {
   const [form, setForm] = useState<MeetingFormData>({ ...emptyForm });
+  const [employees, setEmployees] = useState<EmployeeMasterRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -32,6 +33,13 @@ export default function ScheduleMeetingPage() {
         setForm(prev => ({ ...prev, organization: data.client_name }));
       }
     }).catch(err => console.error('Failed to load branding:', err));
+
+    api.get('/employees/master').then(({ data }) => {
+      setEmployees(Array.isArray(data) ? data : []);
+    }).catch(err => {
+      console.error('Failed to load Employee Master:', err);
+      toast.error('Employee Master load nahi hua. Refresh karke try karein.');
+    });
   }, []);
 
   const updateField = (field: string, value: any) => setForm((p) => ({ ...p, [field]: value }));
@@ -40,7 +48,7 @@ export default function ScheduleMeetingPage() {
   const addAttendee = () =>
     setForm((p) => ({
       ...p,
-      attendees: [...p.attendees, { user_name: '', email: '', designation: '', whatsapp_number: '', remarks: '', attendance_status: 'Present' as AttendanceStatus }],
+      attendees: [...p.attendees, { unique_id: '', user_name: '', email: '', designation: '', whatsapp_number: '', remarks: '', attendance_status: 'Present' as AttendanceStatus }],
     }));
   const removeAttendee = (i: number) =>
     setForm((p) => ({ ...p, attendees: p.attendees.filter((_, idx) => idx !== i) }));
@@ -49,6 +57,33 @@ export default function ScheduleMeetingPage() {
       ...p,
       attendees: p.attendees.map((a, idx) => (idx === i ? { ...a, [field]: value } : a)),
     }));
+
+  const selectEmployeeForAttendee = (index: number, empId: string) => {
+    const selected = employees.find((e) => e.emp_id === empId);
+    if (!selected) {
+      updateAttendee(index, 'unique_id', '');
+      updateAttendee(index, 'user_name', '');
+      updateAttendee(index, 'email', '');
+      updateAttendee(index, 'designation', '');
+      updateAttendee(index, 'whatsapp_number', '');
+      return;
+    }
+
+    setForm((p) => ({
+      ...p,
+      attendees: p.attendees.map((a, idx) => {
+        if (idx !== index) return a;
+        return {
+          ...a,
+          unique_id: selected.emp_id || '',
+          user_name: selected.user_name || '',
+          email: selected.email || '',
+          designation: selected.designation || selected.department || '',
+          whatsapp_number: selected.number || '',
+        };
+      }),
+    }));
+  };
 
   // Agenda
   const addAgenda = () =>
@@ -190,14 +225,29 @@ export default function ScheduleMeetingPage() {
           <p className="text-sm text-gray-500 mb-4 font-medium italic">
             Note: Filling out this form will schedule the meeting and send invitations to the attendees automatically.
           </p>
-          {form.attendees.map((a, i) => (
+          {form.attendees.map((a, i) => {
+            const selectedIds = new Set(
+              form.attendees
+                .filter((_, idx) => idx !== i)
+                .map((x) => x.unique_id)
+                .filter(Boolean)
+            );
+
+            return (
             <div key={i} className="flex flex-col gap-3 mb-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                <input placeholder="Unique ID" value={a.unique_id || ''} onChange={(e) => updateAttendee(i, 'unique_id', e.target.value)} className={inputClass} />
-                <input placeholder="Name *" value={a.user_name} onChange={(e) => updateAttendee(i, 'user_name', e.target.value)} className={inputClass} />
-                <input placeholder="Email" value={a.email || ''} onChange={(e) => updateAttendee(i, 'email', e.target.value)} className={inputClass} />
-                <input placeholder="Designation" value={a.designation || ''} onChange={(e) => updateAttendee(i, 'designation', e.target.value)} className={inputClass} />
-                <input placeholder="WhatsApp Number" value={a.whatsapp_number || ''} onChange={(e) => updateAttendee(i, 'whatsapp_number', e.target.value)} className={inputClass} />
+                <select value={a.unique_id || ''} onChange={(e) => selectEmployeeForAttendee(i, e.target.value)} className={inputClass}>
+                  <option value="">Select Employee (Employee Master)</option>
+                  {employees.map((emp) => (
+                    <option key={emp.emp_id || `${emp.user_name}-${emp.email}`} value={emp.emp_id} disabled={selectedIds.has(emp.emp_id)}>
+                      {emp.name_with_department || `${emp.user_name}${emp.department ? ` - ${emp.department}` : ''}`}
+                    </option>
+                  ))}
+                </select>
+                <input placeholder="Employee Name" value={a.user_name || ''} className={inputClass} readOnly />
+                <input placeholder="Email" value={a.email || ''} className={inputClass} readOnly />
+                <input placeholder="Designation" value={a.designation || ''} className={inputClass} readOnly />
+                <input placeholder="WhatsApp Number" value={a.whatsapp_number || ''} className={inputClass} readOnly />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 <input placeholder="Remarks (Will be included in the schedule email)" value={a.remarks || ''} onChange={(e) => updateAttendee(i, 'remarks', e.target.value)} className={`md:col-span-3 ${inputClass}`} />
@@ -206,7 +256,8 @@ export default function ScheduleMeetingPage() {
                 </button>
               </div>
             </div>
-          ))}
+            );
+          })}
         </section>
 
         <button
