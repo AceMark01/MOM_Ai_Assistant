@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import api from '../api';
@@ -20,17 +20,55 @@ const emptyForm: MeetingFormData = {
   tasks: [],
 };
 
+const normalizeMeetingType = (meetingType?: string) => {
+  const value = String(meetingType || '').trim().toLowerCase();
+  if (!value || value === 'regular' || value === 'regular meeting') return '';
+  if (value === 'br' || value.includes('board resolution')) return 'Board Resolution';
+  if (value.includes('committee')) return 'Committee Meeting';
+  if (value.includes('annual general')) return 'Annual General Meeting';
+  return meetingType || '';
+};
+
 export default function ScheduleMeetingPage() {
   const [form, setForm] = useState<MeetingFormData>({ ...emptyForm });
   const [employees, setEmployees] = useState<EmployeeMasterRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const routeState = location.state as {
+    prefill?: Partial<MeetingFormData>;
+    rescheduleContext?: { isRescheduled?: boolean };
+  } | null;
+  const isRescheduleFlow = Boolean(routeState?.rescheduleContext?.isRescheduled);
+
+  useEffect(() => {
+    const state = location.state as { prefill?: Partial<MeetingFormData> } | null;
+    const prefill = state?.prefill;
+    if (!prefill) return;
+
+    setForm({
+      ...emptyForm,
+      ...prefill,
+      hosted_by: prefill.hosted_by && String(prefill.hosted_by).trim() !== ''
+        ? String(prefill.hosted_by)
+        : emptyForm.hosted_by,
+      meeting_type: normalizeMeetingType(prefill.meeting_type),
+      meeting_mode: prefill.meeting_mode === 'Offline' ? 'Offline' : 'Online',
+      attendees: prefill.attendees ?? [],
+      agenda_items: prefill.agenda_items ?? [],
+      tasks: prefill.tasks ?? [],
+    });
+  }, [location.state]);
 
   // Load branding config for autofill
   useEffect(() => {
     api.get('/branding/').then(({ data }) => {
       if (data.client_name) {
-        setForm(prev => ({ ...prev, organization: data.client_name }));
+        setForm(prev => (
+          prev.organization && prev.organization.trim() !== ''
+            ? prev
+            : { ...prev, organization: data.client_name }
+        ));
       }
     }).catch(err => console.error('Failed to load branding:', err));
 
@@ -96,6 +134,18 @@ export default function ScheduleMeetingPage() {
       agenda_items: p.agenda_items.map((a, idx) => (idx === i ? { ...a, [field]: value } : a)),
     }));
 
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key !== 'Enter') return;
+
+    const target = e.target as HTMLElement;
+    const isTextArea = target instanceof HTMLTextAreaElement;
+    const isSubmitButton = target instanceof HTMLButtonElement && target.type === 'submit';
+
+    if (!isTextArea && !isSubmitButton) {
+      e.preventDefault();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.title.trim()) {
@@ -106,6 +156,7 @@ export default function ScheduleMeetingPage() {
     try {
       const payload = {
         ...form,
+        status: isRescheduleFlow ? 'Rescheduled' : 'Scheduled',
         date: form.date && form.date.trim() !== '' ? form.date : null,
         time: form.time && form.time.trim() !== '' ? form.time : null,
         attendees: form.attendees.map((a) => ({
@@ -117,7 +168,7 @@ export default function ScheduleMeetingPage() {
       const endpoint = isBR ? '/br/' : '/meetings/';
 
       const { data } = await api.post(endpoint, payload);
-      toast.success(`${isBR ? 'Board Resolution' : 'Meeting'} scheduled successfully! Invitations sent.`);
+      toast.success(`${isBR ? 'Board Resolution' : 'Meeting'} ${isRescheduleFlow ? 'rescheduled' : 'scheduled'} successfully! Invitations sent.`);
       navigate(`${isBR ? '/br' : '/meetings'}/${data.id}`);
     } catch (err: any) {
       const detail = err.response?.data?.detail;
@@ -130,15 +181,6 @@ export default function ScheduleMeetingPage() {
       }
     } finally {
       setLoading(false);
-    }
-  };
-
-  const preventEnterSubmit = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    if (e.key !== 'Enter') return;
-    const target = e.target as HTMLElement;
-    const tag = (target.tagName || '').toLowerCase();
-    if (tag !== 'textarea') {
-      e.preventDefault();
     }
   };
 
@@ -156,7 +198,7 @@ export default function ScheduleMeetingPage() {
       </button>
       <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Schedule New Meeting</h2>
 
-      <form onSubmit={handleSubmit} onKeyDown={preventEnterSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} onKeyDown={handleFormKeyDown} className="space-y-6">
         {/* Meeting Details */}
         <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Meeting Details</h3>
