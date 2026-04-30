@@ -6,10 +6,12 @@ import enum
 # ── Enums ──────────────────────────────────────────────────────────────
 
 class UserRole(str, enum.Enum):
+    ADMIN = "Admin"
     CEO = "CEO"
     MANAGER = "Manager"
     HR = "HR"
     EMPLOYEE = "Employee"
+    USER = "User"
 
 
 class AttendanceStatus(str, enum.Enum):

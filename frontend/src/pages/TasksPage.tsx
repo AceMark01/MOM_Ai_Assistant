@@ -17,11 +17,11 @@ import type { GlobalTask } from '../types';
 export default function TasksPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialFilter = searchParams.get('source') as 'All' | 'Regular' | 'BR' || 'All';
-  const initialStatus = searchParams.get('status') as 'All' | 'Pending' | 'In Progress' | 'Completed' || 'All';
+  const initialStatus = searchParams.get('status') as 'All' | 'Pending' | 'Awaiting Review' | 'Completed' || 'All';
   const initialMeetingId = searchParams.get('meeting_id');
 
   const [filter, setFilter] = useState<'All' | 'Regular' | 'BR'>(initialFilter);
-  const [statusFilter, setStatusFilter] = useState<'All' | 'Pending' | 'In Progress' | 'Completed'>(initialStatus);
+  const [statusFilter, setStatusFilter] = useState<'All' | 'Pending' | 'Awaiting Review' | 'Completed'>('All');
   const [search, setSearch] = useState('');
 
   const { data: tasks = [], isLoading } = useQuery<GlobalTask[]>({
@@ -38,7 +38,7 @@ export default function TasksPage() {
     });
   };
 
-  const updateStatusFilter = (s: 'All' | 'Pending' | 'In Progress' | 'Completed') => {
+  const updateStatusFilter = (s: 'All' | 'Pending' | 'Awaiting Review' | 'Completed') => {
     setStatusFilter(s);
     setSearchParams(prev => {
       if (s === 'All') prev.delete('status');
@@ -56,12 +56,12 @@ export default function TasksPage() {
     return matchesSource && matchesStatus && matchesMeetingId && matchesSearch;
   });
 
-  const getStatusColor = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
-      case 'Completed': return 'text-green-600 bg-green-50 dark:bg-green-500/10 border-green-100 dark:border-green-500/20';
-      case 'In Progress': return 'text-brand-600 bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20';
-      case 'Pending': return 'text-amber-600 bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20';
-      default: return 'text-slate-600 bg-slate-50 dark:bg-slate-500/10 border-slate-100 dark:border-slate-500/20';
+      case 'Completed': return 'bg-green-50 text-green-700 border-green-200 dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20';
+      case 'Awaiting Review': return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20';
+      case 'Pending': return 'bg-red-50 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20';
+      default: return 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-500/10 dark:text-slate-400 dark:border-slate-500/20';
     }
   };
 
@@ -124,7 +124,7 @@ export default function TasksPage() {
 
         {/* Status Filter */}
         <div className="flex bg-slate-100 dark:bg-white/5 p-1 rounded-lg ml-auto">
-          {(['All', 'Pending', 'In Progress', 'Completed'] as const).map((s) => (
+          {(['All', 'Pending', 'Awaiting Review', 'Completed'] as const).map((s) => (
             <button
               key={s}
               onClick={() => updateStatusFilter(s)}
@@ -159,8 +159,10 @@ export default function TasksPage() {
               key={`${t.source}-${t.id}`}
               className="group bg-white dark:bg-[#161b27] p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-500/30 transition-all duration-300 relative overflow-hidden"
             >
-              {/* Type Accent */}
-              <div className={`absolute left-0 top-0 bottom-0 w-1 ${t.source === 'BR' ? 'bg-amber-500' : 'bg-brand-500'}`} />
+              {/* Status-based Left Border Accent */}
+              <div className={`absolute left-0 top-0 bottom-0 w-1 ${
+                  t.status === 'Completed' ? 'bg-green-500' : t.status === 'Awaiting Review' ? 'bg-amber-500' : 'bg-red-500'
+                }`} />
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <div className="space-y-3 min-w-0 flex-1">
@@ -213,7 +215,7 @@ export default function TasksPage() {
 
                 {/* Status Column */}
                 <div className="flex flex-row sm:flex-col items-center sm:items-end gap-3 shrink-0">
-                  <span className={`px-4 py-1.5 rounded-xl text-[12px] font-extrabold border shadow-sm ${getStatusColor(t.status)}`}>
+                  <span className={`px-4 py-1.5 rounded-xl text-[12px] font-extrabold border shadow-sm ${getStatusStyle(t.status)}`}>
                     {t.status.toUpperCase()}
                   </span>
                   

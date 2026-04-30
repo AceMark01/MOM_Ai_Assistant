@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../api';
-import { useThemeStore } from '../store';
+import { useThemeStore, useAuthStore } from '../store';
 import {
   HomeIcon,
   CalendarDaysIcon,
@@ -12,23 +12,43 @@ import {
   ClipboardDocumentListIcon,
   Bars3Icon,
   XMarkIcon,
+  UserGroupIcon,
+  DocumentCheckIcon,
+  ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline';
 
-const navItems = [
+const adminNavItems = [
   { path: '/', label: 'Dashboard', icon: HomeIcon },
   { path: '/meetings', label: 'Meetings', icon: CalendarDaysIcon },
   { path: '/br', label: 'Board Resolutions', icon: ShieldCheckIcon },
   { path: '/tasks', label: 'Global Tasks', icon: ClipboardDocumentListIcon },
+  { path: '/my-tasks', label: 'FMS Tasks', icon: DocumentCheckIcon },
+  { path: '/user-management', label: 'User Management', icon: UserGroupIcon },
 ];
+
+const userNavItems = [
+  { path: '/my-tasks', label: 'My Tasks', icon: DocumentCheckIcon },
+];
+
+const ADMIN_ROLES = ['Admin', 'CEO', 'Manager', 'HR'];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const { dark, toggle } = useThemeStore();
+  const { user, logout } = useAuthStore();
+  const isAdmin = user && ADMIN_ROLES.includes(user.role);
+  const navItems = isAdmin ? adminNavItems : userNavItems;
   const [branding, setBranding] = useState<{ show_botivate_branding: boolean; client_name: string } | null>(null);
 
   useEffect(() => {
     api.get('/branding/').then(({ data }) => setBranding(data)).catch(() => {});
   }, []);
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   const getPageLabel = () => {
     const matched = navItems.find((n) => n.path === location.pathname);
     if (matched) return matched.label;
@@ -37,6 +57,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     if (location.pathname.startsWith('/br/')) return 'Board Resolution Details';
     if (location.pathname === '/attendance') return 'Attendance Tracking';
     if (location.pathname === '/users') return 'User Management';
+    if (location.pathname === '/user-management') return 'User Management';
+    if (location.pathname === '/my-tasks') return isAdmin ? 'FMS Tasks' : 'My Tasks';
     if (location.pathname === '/notifications') return 'Notifications';
     if (location.pathname === '/upload') return 'Record Upload';
     if (location.pathname === '/schedule-meeting') return 'Schedule Meeting';
@@ -204,6 +226,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <BellIcon className="w-4 md:w-5 h-4 md:h-5" />
               <span className="absolute top-2 right-2 md:top-2.5 md:right-2.5 w-2 h-2 bg-red-500 border-2 border-slate-50 dark:border-white/5 rounded-full" />
             </Link>
+
+            {/* User info & Logout */}
+            {user && (
+              <div className="flex items-center gap-2 ml-1">
+                <div className="hidden md:block text-right">
+                  <p className="text-[12px] font-bold text-slate-800 dark:text-white leading-tight">{user.name}</p>
+                  <p className="text-[10px] text-slate-400">{user.role}</p>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl bg-red-50 dark:bg-red-500/10 text-red-500 border border-red-100 dark:border-red-500/20 hover:bg-red-100 dark:hover:bg-red-500/20 transition shrink-0"
+                  title="Logout"
+                >
+                  <ArrowRightOnRectangleIcon className="w-4 md:w-5 h-4 md:h-5" />
+                </button>
+              </div>
+            )}
           </div>
         </header>
 

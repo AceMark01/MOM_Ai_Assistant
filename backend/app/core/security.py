@@ -8,9 +8,11 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
+import logging
 from app.config import get_settings
 from app.models.models import UserRole
 
+logger = logging.getLogger(__name__)
 settings = get_settings()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -40,15 +42,21 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
-        user_id: int = payload.get("sub")
+        user_id = payload.get("sub")
         if user_id is None:
+            logger.error("Token sub is missing")
             raise credentials_exception
-    except JWTError:
+    except JWTError as e:
+        logger.error(f"JWT decode error: {e}")
         raise credentials_exception
 
     from app.services.user_service import UserService
-    user = await UserService.get_user_by_id(None, user_id)
-    if user is None or not user.is_active:
+    user = await UserService.get_user_by_id(None, int(user_id))
+    if user is None:
+        logger.error(f"User not found for ID: {user_id}")
+        raise credentials_exception
+    if not user.is_active:
+        logger.error(f"User is inactive: {user_id}")
         raise credentials_exception
     return user
 

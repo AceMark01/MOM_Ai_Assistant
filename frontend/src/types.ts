@@ -1,6 +1,6 @@
 /* Shared TypeScript types (mirrors backend Pydantic schemas). */
 
-export type UserRole = 'CEO' | 'Manager' | 'HR' | 'Employee';
+export type UserRole = 'Admin' | 'CEO' | 'Manager' | 'HR' | 'Employee' | 'User';
 export type TaskStatus = 'Pending' | 'In Progress' | 'Completed';
 export type AttendanceStatus = 'Present' | 'Absent' | 'Excused';
 export type MeetingStatus = 'Scheduled' | 'Rescheduled' | 'Cancelled' | 'Completed' | 'Processing';

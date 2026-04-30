@@ -114,7 +114,7 @@ def _row_to_attendee(a: dict):
         "unique_id": a.get("unique_id") or None,
         "whatsapp_number": a.get("whatsapp_number") or None,
         "remarks": a.get("remarks") or None,
-        "attendance_status": a.get("attendance_status", "Present"),
+        "attendance_status": a.get("attendance_status") or "Present",
     })
 
 
@@ -144,7 +144,7 @@ def _row_to_task(t: dict):
         "responsible_person": t.get("responsible_person") or None,
         "responsible_email": t.get("responsible_email") or None,
         "deadline": _parse_date(t.get("deadline")),
-        "status": t.get("status", "Pending"),
+        "status": t.get("status") or "Pending",
         "created_at": _parse_iso_datetime(t.get("created_at")),
     })
 

@@ -209,10 +209,40 @@ def _row_to_dict(headers: list[str], row: list[str]) -> dict[str, str]:
 
 
 import time as time_module
+from functools import wraps
+import requests
+
+def retry_on_failure(max_retries=3, delay=1, backoff=2):
+    """Decorator to retry a function if it raises a connection-related exception."""
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            mtries, mdelay = max_retries, delay
+            while mtries > 0:
+                try:
+                    return func(*args, **kwargs)
+                except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, 
+                        gspread.exceptions.APIError, Exception) as e:
+                    # Only retry on transient/connection errors
+                    if isinstance(e, gspread.exceptions.APIError) and e.response.status_code not in [500, 502, 503, 504, 429]:
+                        raise e # Don't retry on 403, 404, etc.
+                    
+                    mtries -= 1
+                    if mtries == 0:
+                        logger.error(f"Final failure after {max_retries} retries: {e}")
+                        raise e
+                    
+                    wait = mdelay * (backoff ** (max_retries - mtries - 1))
+                    logger.warning(f"Google Sheets error ({e}), retrying in {wait}s... ({mtries} retries left)")
+                    time_module.sleep(wait)
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
 
 _CACHE_TTL = 10  # Increased to 10 seconds to avoid Quota Exceeded (429) errors from Google Sheets API.
 _sheets_cache = {}
 
+@retry_on_failure(max_retries=3)
 def _get_sheet_values(sheet_name: str) -> list[list[str]]:
     now = time_module.time()
     if sheet_name in _sheets_cache:
@@ -266,6 +296,7 @@ class SheetsDB:
     # ── Append Row ────────────────────────────────────────────────────
 
     @staticmethod
+    @retry_on_failure(max_retries=3)
     def append_row(sheet_name: str, data: dict[str, Any]) -> dict[str, str]:
         """Append a new row.  Auto-sets 'id' if not provided."""
         ws = get_worksheet(sheet_name)
@@ -288,6 +319,7 @@ class SheetsDB:
         return _row_to_dict(headers, row)
 
     @staticmethod
+    @retry_on_failure(max_retries=3)
     def append_rows(sheet_name: str, data_list: list[dict[str, Any]]) -> list[dict[str, str]]:
         """Append multiple rows in one API call."""
         if not data_list:
@@ -361,6 +393,7 @@ class SheetsDB:
     # ── Update Row ────────────────────────────────────────────────────
 
     @staticmethod
+    @retry_on_failure(max_retries=3)
     def update_row(sheet_name: str, record_id: int, updates: dict[str, Any]) -> dict[str, str] | None:
         """Update specific fields of a row by id."""
         ws = get_worksheet(sheet_name)

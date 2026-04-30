@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     DEFAULT_CS_EMAIL: str = "prabhatkumarsictc7070@gmail.com"
 
+    # Master Admin (auto-synced on every server startup)
+    ADMIN_EMAIL: str = ""
+    ADMIN_PASSWORD: str = ""
+
     # Branding & White-Labeling
     CLIENT_NAME: str = "Botivate Services LLP"
     CLIENT_ADDRESS: str = "Shriram Business Park, Block-I , Office No- 224 , Vidhan Sabha Rd, Raipur, Chhattisgarh 493111"
@@ -27,6 +31,7 @@ class Settings(BaseSettings):
     # Google Cloud Configuration
     SPREADSHEET_ID: str = "1VEejcQEil9gGYChPNI00R96XWJBlbHd3j9hib6PrOp0"
     DRIVE_FOLDER_ID: str = "0AAgyfuup7OPSUk9PVA"
+    FMS_SPREADSHEET_ID: str = ""
 
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./mom_assistant.db"

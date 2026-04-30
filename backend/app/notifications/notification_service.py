@@ -15,7 +15,7 @@ class NotificationService:
 
     @staticmethod
     async def notify_task_assigned(db, task, meeting_title: str, is_br: bool = False):
-        """Send notification when a task is assigned."""
+        """Send notification when a task is assigned + sync to FMS sheet."""
         email = task.responsible_email if hasattr(task, 'responsible_email') else None
         if email:
             await EmailService.send_task_assignment(
@@ -32,6 +32,23 @@ class NotificationService:
                 "is_read": "False",
                 "sent_at": datetime.utcnow().isoformat(),
             })
+        
+        # ── Sync to FMS Sheet ──
+        try:
+            from app.services.fms_service import FMSService
+            person_name = task.responsible_person if hasattr(task, 'responsible_person') else ""
+            deadline_str = str(task.deadline) if hasattr(task, 'deadline') and task.deadline else ""
+            source = "BR" if is_br else "Regular"
+            FMSService.assign_task(
+                person_name=person_name or "Unassigned",
+                job_description=f"[{meeting_title}] {task.title}",
+                deadline_date=deadline_str,
+                person_email=email or "",
+                source=source,
+            )
+            logger.info("FMS: Task synced for %s - %s", person_name, task.title)
+        except Exception as e:
+            logger.warning("FMS sync failed (non-critical): %s", e)
 
     @staticmethod
     async def notify_deadline_reminder(db, task):

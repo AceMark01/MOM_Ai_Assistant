@@ -32,10 +32,58 @@ async def lifespan(app: FastAPI):
     """Application startup and shutdown events."""
     # Startup - initialise Google Sheets tabs
     init_sheets()
+    
+    # Sync master admin credentials from .env
+    _sync_admin_from_env()
+    
     start_scheduler()
     yield
     # Shutdown
     shutdown_scheduler()
+
+
+def _sync_admin_from_env():
+    """Ensure a master admin account exists with credentials from .env.
+    Always updates the FIRST existing Admin row. If no Admin exists, it creates one."""
+    admin_email = settings.ADMIN_EMAIL
+    admin_password = settings.ADMIN_PASSWORD
+    
+    if not admin_email or not admin_password:
+        logger.info("ADMIN_EMAIL/ADMIN_PASSWORD not set in .env, skipping admin sync.")
+        return
+    
+    try:
+        from app.services.google_sheets_service import SheetsDB
+        from app.core.security import hash_password
+        
+        # Check if ANY admin exists in the system (by role)
+        existing_admins = SheetsDB.get_by_field("Users", "role", "Admin")
+        
+        if existing_admins:
+            # Always update the VERY FIRST Admin row (usually ID 1) with the new .env credentials
+            user_id = existing_admins[0].get("id")
+            new_hash = hash_password(admin_password)
+            SheetsDB.update_row("Users", int(user_id), {
+                "name": "Admin",
+                "email": admin_email,
+                "hashed_password": new_hash,
+                "is_active": "True",
+            })
+            logger.info("Master Admin synced: Overwrote ID %s with new email/password from .env", user_id)
+        else:
+            # Create new admin only if zero admins exist in the entire sheet
+            from datetime import datetime
+            SheetsDB.append_row("Users", {
+                "name": "Admin",
+                "email": admin_email,
+                "hashed_password": hash_password(admin_password),
+                "role": "Admin",
+                "is_active": "True",
+                "created_at": datetime.utcnow().isoformat(),
+            })
+            logger.info("Master Admin created: %s", admin_email)
+    except Exception as e:
+        logger.error("Failed to sync admin from .env: %s", e)
 
 
 app = FastAPI(
