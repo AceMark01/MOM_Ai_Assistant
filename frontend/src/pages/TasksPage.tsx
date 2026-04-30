@@ -17,11 +17,11 @@ import type { GlobalTask } from '../types';
 export default function TasksPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialFilter = searchParams.get('source') as 'All' | 'Regular' | 'BR' || 'All';
-  const initialStatus = searchParams.get('status') as 'All' | 'Pending' | 'Awaiting Review' | 'Completed' || 'All';
+  const initialStatus = searchParams.get('status') as 'All' | 'Pending' | 'In Progress' | 'Completed' || 'All';
   const initialMeetingId = searchParams.get('meeting_id');
 
   const [filter, setFilter] = useState<'All' | 'Regular' | 'BR'>(initialFilter);
-  const [statusFilter, setStatusFilter] = useState<'All' | 'Pending' | 'Awaiting Review' | 'Completed'>('All');
+  const [statusFilter, setStatusFilter] = useState<'All' | 'Pending' | 'In Progress' | 'Completed'>('All');
   const [search, setSearch] = useState('');
 
   const { data: tasks = [], isLoading } = useQuery<GlobalTask[]>({
@@ -38,7 +38,7 @@ export default function TasksPage() {
     });
   };
 
-  const updateStatusFilter = (s: 'All' | 'Pending' | 'Awaiting Review' | 'Completed') => {
+  const updateStatusFilter = (s: 'All' | 'Pending' | 'In Progress' | 'Completed') => {
     setStatusFilter(s);
     setSearchParams(prev => {
       if (s === 'All') prev.delete('status');
@@ -124,7 +124,7 @@ export default function TasksPage() {
 
         {/* Status Filter */}
         <div className="flex bg-slate-100 dark:bg-white/5 p-1 rounded-lg ml-auto">
-          {(['All', 'Pending', 'Awaiting Review', 'Completed'] as const).map((s) => (
+          {(['All', 'Pending', 'In Progress', 'Completed'] as const).map((s) => (
             <button
               key={s}
               onClick={() => updateStatusFilter(s)}
@@ -161,7 +161,7 @@ export default function TasksPage() {
             >
               {/* Status-based Left Border Accent */}
               <div className={`absolute left-0 top-0 bottom-0 w-1 ${
-                  t.status === 'Completed' ? 'bg-green-500' : t.status === 'Awaiting Review' ? 'bg-amber-500' : 'bg-red-500'
+                  t.status === 'Completed' ? 'bg-green-500' : t.status === 'In Progress' ? 'bg-amber-500' : 'bg-red-500'
                 }`} />
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
